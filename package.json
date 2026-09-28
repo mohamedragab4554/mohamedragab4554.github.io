@@ -1,0 +1,29 @@
+{
+  "name": "mohamed-ragab-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "serve out",
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.5.26",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "@types/three": "^0.169.0",
+    "autoprefixer": "10.4.21",
+    "postcss": "8.5.6",
+    "serve": "^14.2.6",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.8.3"
+  }
+}

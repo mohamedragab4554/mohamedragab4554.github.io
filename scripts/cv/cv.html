@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>Mohamed Ragab: CV</title>
+<style>
+@font-face{font-family:Inter;src:url(Inter-Variable.woff2) format("woff2");font-weight:100 900}
+@page{size:A4;margin:11mm 13mm}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;color:#101418;font-size:8.9pt;line-height:1.36;margin:0}
+h1{font-size:21pt;letter-spacing:-.02em;margin:0}
+.t{color:#0B6E6B;font-weight:600;margin-top:2px}
+.c{color:#3B4450;margin-top:4px;font-size:8.8pt}
+h2{font-size:8.2pt;letter-spacing:.14em;text-transform:uppercase;color:#0B6E6B;margin:10px 0 4px;border-bottom:1px solid #d9dbd5;padding-bottom:3px}
+.r{display:flex;justify-content:space-between;gap:10px;margin-top:7px}
+.r b{font-weight:600}.d{color:#5E6873;white-space:nowrap;font-size:8.6pt}
+ul{margin:3px 0 0 0;padding-left:14px}li{margin:1.5px 0}
+.s{display:grid;grid-template-columns:150px 1fr;gap:3px 10px}.s div:nth-child(odd){font-weight:600}
+p{margin:4px 0}
+</style></head><body>
+<h1>Mohamed Ragab</h1>
+<div class="t">Structural Engineer · Computer Vision &amp; BIM</div>
+<div class="c">mohamedragab6770@gmail.com · linkedin.com/in/mohamed-ragab-278208199</div>
+
+<h2>Profile</h2>
+<p>I am a civil and structural engineer who builds computer vision, BIM and Scan-to-BIM systems, and validates them on real inspection photos, structural drawings and laser scans. I hold an MSc (Distinction) in Digital Construction Analytics &amp; BIM and have a year of structural and façade design delivery. I am co-founder and CTO of AECAI, an AI-assisted structural inspection platform.</p>
+
+<h2>Experience</h2>
+<div class="r"><div><b>R&amp;D AI-Construction Specialist</b> · AGECS (remote)</div><div class="d">Apr 2026 – Present</div></div>
+<ul>
+<li>Column detection on plans with YOLOv8m-seg: mAP50 0.941, precision 0.944, recall 0.935 (tiled inference, 4-rotation TTA, pixel-evidence false-positive filters).</li>
+<li>8-class structural-element segmentation (beam, column, opening, pile, wall, …) on ~21k tiles: validation mAP50 0.902 box / 0.893 mask.</li>
+<li>Human-in-the-loop Scan-to-BIM: a ~264 M-point scan to a verified IFC (2 slabs, 9 walls, 21 columns), with automatic rejection of temporary shoring.</li>
+<li>Dataset engineering across six public sources (SVG/COCO/YOLO converters, hash-verified); QA'd CVAT annotation of project sheets.</li>
+</ul>
+<div class="r"><div><b>Co-Founder &amp; CTO</b> · AECAI Ltd, Belfast</div><div class="d">Dec 2025 – Present</div></div>
+<ul>
+<li>Built the complete Next.js web console: dashboards, assets, inspection forms and builder, photo review, reports.</li>
+<li>Designed the spalling and exposed-rebar U-Net pipeline (patching, Gaussian stitching, TTA) with parallel serverless GPU inference (RunPod, Supabase).</li>
+<li>Corrected a misleading training metric (F1 0.14 → true 0.901, IoU 0.820 for rebar) and ran a false-positive study across 23 test images.</li>
+</ul>
+<div class="r"><div><b>Digital Design Engineer: Industry Collaboration</b> · AECOM × Ulster University</div><div class="d">Feb 2025 – May 2025</div></div>
+<ul>
+<li>Revit model of a concrete water tank from AECOM drawings; crack classifier at 89.69% accuracy (VGG16); width classes against EN 1992-1-1.</li>
+<li>Power BI dashboard with an embedded 3D model, crack register and maintenance actions. Module mark 80%.</li>
+</ul>
+<div class="r"><div><b>Structural &amp; Façade Design Engineer (Graduate)</b> · National Consulting Engineers Inc., Florida (remote)</div><div class="d">Sep 2023 – Sep 2024</div></div>
+<ul><li>115+ design packages (glass railings, curtain walls, canopies, stairs, connections in steel, aluminium and timber) to AISC, ASCE 7, ACI and FBC, using ETABS, SAP2000, SAFE, IDEA StatiCa and AutoCAD.</li></ul>
+<div class="r"><div><b>Internships</b> · DME Holding (planning, Primavera P6) · Redcon Construction (site supervision, piles)</div><div class="d">2021 – 2023</div></div>
+
+<h2>Research</h2>
+<p><b>MSc dissertation (2025):</b> Comparative YOLO and U-Net deep learning for multi-defect detection. YOLOv8x-seg box mAP50 0.807; U-Net ResNet-50 mIoU 0.630 / F1 0.775; field recall 0.933 (YOLO11x-seg) on manually verified industry images; 18-class DACL10k segmentation; survey of 21 practitioners. A journal manuscript is in submission.</p>
+
+<h2>Education</h2>
+<div class="r"><div><b>MSc Digital Construction Analytics &amp; BIM: Distinction</b> · Ulster University</div><div class="d">2024 – 2025</div></div>
+<div class="r"><div><b>BSc Civil Engineering</b> · Higher Technological Institute, Egypt · GPA 3.24/4.00 · Graduation project A+</div><div class="d">2018 – 2023</div></div>
+
+<h2>Skills</h2>
+<div class="s">
+<div>Computer vision &amp; ML</div><div>PyTorch, Ultralytics YOLO, U-Net/FPN (SMP), OpenCV, TensorFlow/Keras, PointNet++, CVAT, evaluation &amp; error analysis</div>
+<div>BIM &amp; digital construction</div><div>Revit, Navisworks, AutoCAD, Dynamo, pyRevit, IFC/IfcOpenShell, Open3D, ReCap, Power BI, ISO 19650</div>
+<div>Structural</div><div>ETABS, SAP2000, SAFE, IDEA StatiCa, RAM Connection, Tekla; AISC, ASCE 7, ACI, Eurocodes</div>
+<div>Software</div><div>Python, TypeScript/Next.js, SQL, Supabase, RunPod, Git</div>
+</div>
+
+<h2>Certifications &amp; memberships</h2>
+<p>ICE Student Member · Deep Learning for Computer Vision (ITI, 2026) · AI Fluency (Anthropic, 2026) · Steel Design Diploma and Concrete Technical Design (Autodesk ATC, 2022) · AUC project-management courses (2023) · Tekla shop drawings (2024)</p>
+<p style="margin-top:6px">Languages: Arabic (native), English (fluent)</p>
+</body></html>

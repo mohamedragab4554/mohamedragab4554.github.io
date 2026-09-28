@@ -1,0 +1,359 @@
+[
+ {
+  "file": "/images/dissertation/unet-outputs.webp",
+  "width": 1322,
+  "height": 338,
+  "source": "MSc\\Dissertation\\02-pub\\Diss\\Mohamed Ragab-B00968029.pdf (Fig. 18, PDF p.36)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/dissertation/fpn-multidefect.webp",
+  "width": 853,
+  "height": 395,
+  "source": "MSc\\Dissertation\\02-pub\\Diss\\Mohamed Ragab-B00968029.pdf (Fig. 22, PDF p.40)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/dissertation/yolo-false-positives.webp",
+  "width": 1074,
+  "height": 373,
+  "source": "MSc\\Dissertation\\02-pub\\Diss\\Mohamed Ragab-B00968029.pdf (Fig. 20, PDF p.39)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/dissertation/external-validation.webp",
+  "width": 1700,
+  "height": 333,
+  "source": "MSc\\Dissertation\\02-pub\\Diss\\Mohamed Ragab-B00968029.pdf (Fig. 16, PDF p.34)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/dissertation/multidefect-site.webp",
+  "width": 1116,
+  "height": 350,
+  "source": "MSc\\Dissertation\\02-pub\\Diss\\Mohamed Ragab-B00968029.pdf (Fig. 19, PDF p.37)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/dissertation/unet-loss.webp",
+  "width": 848,
+  "height": 470,
+  "source": "MSc\\Dissertation\\02-pub\\Diss\\Mohamed Ragab-B00968029.pdf (Fig. 17, PDF p.35)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/dissertation/yolo11x-val-batch.webp",
+  "width": 1100,
+  "height": 1100,
+  "source": "MSc\\Dissertation\\Final\\Final\\11x-val_batch0_pred.jpg",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/revit-tank.webp",
+  "width": 1600,
+  "height": 848,
+  "source": "AECAI\\Aecom\\TANK.png (copy of MSc\\BEN-715-IND work)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/tank-site-model.webp",
+  "width": 1600,
+  "height": 612,
+  "source": "CV\\01-TEMP-UNI\\01-Ganeral BIM\\Egypt\\Mohamed_Ragab_AI_Driven_Digital_Twin_Portfolio-1 (1).pdf p.5",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/crack-classes.webp",
+  "width": 732,
+  "height": 722,
+  "source": "AECAI\\Aecom\\Class2.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/crack-masks.webp",
+  "width": 638,
+  "height": 630,
+  "source": "AECAI\\Aecom\\MASK-RCNN.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/powerbi-3d.webp",
+  "width": 1485,
+  "height": 702,
+  "source": "AECAI\\Aecom\\IOT.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/live-table.webp",
+  "width": 642,
+  "height": 595,
+  "source": "Digital_Twin_Portfolio PDF p.6",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/mobile-view.webp",
+  "width": 720,
+  "height": 720,
+  "source": "Digital_Twin_Portfolio PDF p.7",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/vgg16-curves.webp",
+  "width": 1189,
+  "height": 490,
+  "source": "MSc\\BEN-715-IND\\REPORT\\Mohamed Ragab - B00968029.pdf (Fig. 9)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecom/cnn-baseline-curves.webp",
+  "width": 1189,
+  "height": 390,
+  "source": "MSc\\BEN-715-IND\\REPORT\\Mohamed Ragab - B00968029.pdf (Fig. 8)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/brinell/revit-render.webp",
+  "width": 1900,
+  "height": 578,
+  "source": "Digital_Twin_Portfolio PDF p.2 (model: MSc\\BEN-714\\01-PROJECT\\00-Final\\*.rvt)",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/brinell/revit-exterior.webp",
+  "width": 561,
+  "height": 422,
+  "source": "Digital_Twin_Portfolio PDF p.4",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/brinell/structural-frame.webp",
+  "width": 561,
+  "height": 684,
+  "source": "Digital_Twin_Portfolio PDF p.4",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/brinell/clash.webp",
+  "width": 565,
+  "height": 695,
+  "source": "Digital_Twin_Portfolio PDF p.4",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/brinell/powerbi.webp",
+  "width": 1600,
+  "height": 848,
+  "source": "Digital_Twin_Portfolio PDF p.3",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/brinell/dynamo.webp",
+  "width": 879,
+  "height": 469,
+  "source": "Digital_Twin_Portfolio PDF p.3",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecai/dashboard.webp",
+  "width": 1600,
+  "height": 759,
+  "source": "AECAI\\04-campaign\\AECAI APP\\1.png",
+  "edits": [
+   "blurred private text",
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecai/asset.webp",
+  "width": 1600,
+  "height": 769,
+  "source": "AECAI\\04-campaign\\AECAI APP\\2.png",
+  "edits": [
+   "blurred private text",
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecai/photos-cv.webp",
+  "width": 1600,
+  "height": 774,
+  "source": "AECAI\\04-campaign\\AECAI APP\\4.png",
+  "edits": [
+   "blurred private text",
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecai/inspection-form.webp",
+  "width": 1600,
+  "height": 768,
+  "source": "AECAI\\04-campaign\\AECAI APP\\5.png",
+  "edits": [
+   "blurred private text",
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecai/ai-scan.webp",
+  "width": 571,
+  "height": 452,
+  "source": "AECAI\\04-campaign\\AECAI APP\\6.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/aecai/form-builder.webp",
+  "width": 1600,
+  "height": 769,
+  "source": "AECAI\\04-campaign\\AECAI APP\\3.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/drawings/pred-batch-0.webp",
+  "width": 1200,
+  "height": 1200,
+  "source": "AECAI\\AGECS\\06-structural elements detection\\AGECS\\AGECS\\outputs\\training_runs\\beam_wall_seg_v1\\val_batch0_pred.jpg",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/drawings/pred-batch-1.webp",
+  "width": 1200,
+  "height": 1200,
+  "source": "...\\beam_wall_seg_v1\\val_batch1_pred.jpg",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/drawings/pred-batch-2.webp",
+  "width": 1200,
+  "height": 1200,
+  "source": "...\\beam_wall_seg_v1\\val_batch2_pred.jpg",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/drawings/confusion.webp",
+  "width": 1300,
+  "height": 975,
+  "source": "...\\beam_wall_seg_v1\\confusion_matrix_normalized.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/scan/pointnet-seg.webp",
+  "width": 1400,
+  "height": 862,
+  "source": "AECAI\\AGECS\\02-Scan_to_BIM\\01-structural elements\\2026-06-08_hospital-synthetic-bimstruct3d\\results\\figures\\02_segmentation_3d.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/scan/raw-vs-labeled.webp",
+  "width": 1800,
+  "height": 863,
+  "source": "...\\hospital-synthetic-bimstruct3d\\results\\figures\\vis_raw_vs_labeled.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/scan/per-class.webp",
+  "width": 1900,
+  "height": 415,
+  "source": "...\\hospital-synthetic-bimstruct3d\\results\\figures\\vis_per_class_isolated.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/scan/kladno-slab-classification.webp",
+  "width": 732,
+  "height": 759,
+  "source": "AECAI\\AGECS\\02-Scan_to_BIM\\01-structural elements\\2026-08-06_kladno-station\\outputs\\comparison_images\\arch_level0_classification.png",
+  "edits": [
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/scan/site-structural-plan.webp",
+  "width": 1300,
+  "height": 1357,
+  "source": "...\\2026-09-01_<client>\\PIPELINE_ARCHITECTURE.html (embedded figure; title and coordinates cropped)",
+  "edits": [
+   "cropped",
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/scan/shoring-rejection.webp",
+  "width": 1200,
+  "height": 854,
+  "source": "...\\2026-09-01_<client>\\PIPELINE_ARCHITECTURE.html (embedded figure; coordinates cropped)",
+  "edits": [
+   "cropped",
+   "resized, WebP"
+  ]
+ },
+ {
+  "file": "/images/profile/headshot.webp",
+  "width": 800,
+  "height": 839,
+  "source": "CV\\x\\me.jpeg",
+  "edits": [
+   "resized, WebP"
+  ]
+ }
+]

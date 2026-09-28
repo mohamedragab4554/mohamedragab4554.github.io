@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+_work/
+*.tsbuildinfo
+next-env.d.ts
+artifact/
+*.zip
+# private working notes (kept locally, not published)
+portfolio_evidence_inventory.md
+portfolio_content_plan.md
+portfolio_questions.md
+PORTFOLIO_HANDOVER.md

@@ -1,0 +1,158 @@
+[
+ {
+  "file": "/images/inference/20250220_092206_input.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_092206 (input)"
+ },
+ {
+  "file": "/images/inference/20250220_092206_yolo11x.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_092206 (yolo11x)"
+ },
+ {
+  "file": "/images/inference/20250220_092206_unet.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_092206 (unet)"
+ },
+ {
+  "file": "/images/inference/20250220_092206_multi.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_092206 (multi)"
+ },
+ {
+  "file": "/images/inference/20250220_092206_mask.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_092206 (mask)"
+ },
+ {
+  "file": "/images/inference/20250220_083026_input.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_083026 (input)"
+ },
+ {
+  "file": "/images/inference/20250220_083026_yolo11x.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_083026 (yolo11x)"
+ },
+ {
+  "file": "/images/inference/20250220_083026_unet.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_083026 (unet)"
+ },
+ {
+  "file": "/images/inference/20250220_083026_multi.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_083026 (multi)"
+ },
+ {
+  "file": "/images/inference/20250220_083026_mask.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_083026 (mask)"
+ },
+ {
+  "file": "/images/inference/IMG_3442_input.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 IMG_3442 (input)"
+ },
+ {
+  "file": "/images/inference/IMG_3442_yolo11x.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 IMG_3442 (yolo11x)"
+ },
+ {
+  "file": "/images/inference/IMG_3442_unet.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 IMG_3442 (unet)"
+ },
+ {
+  "file": "/images/inference/IMG_3442_multi.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 IMG_3442 (multi)"
+ },
+ {
+  "file": "/images/inference/IMG_3442_mask.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 IMG_3442 (mask)"
+ },
+ {
+  "file": "/images/inference/20250220_100459_input.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_100459 (input)"
+ },
+ {
+  "file": "/images/inference/20250220_100459_yolo11x.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_100459 (yolo11x)"
+ },
+ {
+  "file": "/images/inference/20250220_100459_unet.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_100459 (unet)"
+ },
+ {
+  "file": "/images/inference/20250220_100459_multi.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_100459 (multi)"
+ },
+ {
+  "file": "/images/inference/20250220_100459_mask.webp",
+  "width": 960,
+  "height": 1280,
+  "source": "AECAI\\v11n vs. v11x vs. v8x\\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\\masks} \u00b7 20250220_100459 (mask)"
+ },
+ {
+  "file": "/images/compare/drawings-labels.webp",
+  "width": 1100,
+  "height": 1100,
+  "source": "AECAI\\AGECS\\06-structural elements detection\\...\\beam_wall_seg_v1\\val_batch1_labels.jpg"
+ },
+ {
+  "file": "/images/compare/drawings-pred.webp",
+  "width": 1100,
+  "height": 1100,
+  "source": "AECAI\\AGECS\\06-structural elements detection\\...\\beam_wall_seg_v1\\val_batch1_pred.jpg"
+ },
+ {
+  "file": "/images/compare/scan-raw.webp",
+  "width": 1300,
+  "height": 1196,
+  "source": "...\\hospital-synthetic-bimstruct3d\\results\\figures\\vis_raw_vs_labeled.png (left half)"
+ },
+ {
+  "file": "/images/compare/scan-labelled.webp",
+  "width": 1300,
+  "height": 1196,
+  "source": "...\\hospital-synthetic-bimstruct3d\\results\\figures\\vis_raw_vs_labeled.png (right half)"
+ },
+ {
+  "file": "/images/compare/tank-crack-image.webp",
+  "width": 319,
+  "height": 315,
+  "source": "AECAI\\Aecom\\MASK-RCNN.png (bottom-left)"
+ },
+ {
+  "file": "/images/compare/tank-crack-mask.webp",
+  "width": 319,
+  "height": 315,
+  "source": "AECAI\\Aecom\\MASK-RCNN.png (top-left)"
+ }
+]
