@@ -59,7 +59,7 @@ export const experience: Role[] = [
     summary: "Industry project scoped with AECOM: crack detection linked to a Revit asset model and Power BI.",
     bullets: [
       "Converted AECOM's 2D drawings into a Revit model and linked crack data via Dynamo and IFC.",
-      "Crack classifier at 89.69% accuracy (VGG16), with width classes against EN 1992-1-1.",
+      "VGG16 transfer learning roughly doubled crack-classifier accuracy over a custom CNN (36.67% → 70.0% on 30 test images), with width classes against EN 1992-1-1.",
       "Power BI dashboard with an embedded 3D model, crack register, maintenance actions and a mobile view. Module mark 80%.",
     ],
     tools: ["Revit", "Dynamo", "Python", "Keras", "Power BI"],

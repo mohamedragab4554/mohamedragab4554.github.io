@@ -12,3 +12,10 @@ portfolio_content_plan.md
 portfolio_questions.md
 PORTFOLIO_HANDOVER.md
 FINAL_PORTFOLIO_REVIEW.md
+# private audit / review notes and secrets (never published)
+GITHUB_AUDIT.md
+GITHUB_FINAL_REVIEW.md
+.env
+*.env
+*token*.txt
+credentials*

@@ -190,7 +190,7 @@ export const showcase: ShowcaseLane[] = [
     body: "For the AECOM × Ulster project, each detected crack is classified against the EN 1992-1-1 width limit and listed with a recommended action beside an embedded 3D Revit view. For the Brinell Building, a Power BI dashboard summarises model quantities next to the 3D model.",
     facts: [
       { value: "0.3 mm", label: "EN 1992 w_max used to flag repairs" },
-      { value: "89.69%", label: "Crack classifier accuracy (VGG16)" },
+      { value: "36.7→70%", label: "Crack classifier: CNN → VGG16" },
       { value: "80%", label: "Module mark (BEN715)" },
     ],
     images: [

@@ -1,152 +1,112 @@
-# Mohamed Ragab: Portfolio
+<p align="center"><img src="public/images/cad/model-d.webp" alt="Portfolio hero: three real structural plans, my model's detections, and the level-by-level 3D build" width="100%"></p>
 
-**Live site:** https://mohamedragab4554.github.io/
+# Mohamed Ragab: portfolio
 
-This is an interactive portfolio for a structural engineer who works in computer vision, BIM and Scan-to-BIM. It is built with **Next.js 15 (App Router) · TypeScript · Tailwind CSS · Three.js** and exported as a static site. It is hosted on **GitHub Pages**, and every push to `main` triggers an automatic deploy.
+[![Deploy](https://github.com/mohamedragab4554/mohamedragab4554.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/mohamedragab4554/mohamedragab4554.github.io/actions/workflows/deploy.yml)
+![Next.js](https://img.shields.io/badge/Next.js-15-000000)
+![three.js](https://img.shields.io/badge/three.js-0.169-049EF4)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6)
 
-## What's inside
+**Live: [mohamedragab4554.github.io](https://mohamedragab4554.github.io/)**
 
-| Feature | Where |
+This is the source for my professional portfolio: a structural engineer working in AI, computer vision, BIM and Scan-to-BIM. It's a static Next.js site with **WebGL visuals built from real project data**. Every metric on the site carries a source reference to the file it came from.
+
+## Highlights
+
+| | |
 |---|---|
-| **Hero: CAD-to-BIM on real data.** Three structural plans of BLD-09 (the held-out test building of my 8-class YOLOv8-seg model, public BLD-ST dataset) with the model's own predictions (268 detections, run with the tiled-inference settings of my pipeline: 640 px tiles, 192 px overlap, conf 0.40, NMS 0.45). Plans stacked one storey apart; the detections are extruded level by level. Data in `public/data/cad/`. | `components/cad/*` |
-| **Scan-to-BIM on real data.** 120,000 points sampled from the 250.5 M-point Kladno station scan, coloured by the element of my final IFC (`cloud2bim_FINAL_REVIEW_v4_COMPLETE_PITCHED_ROOF.ifc`) they support, then the IFC revealed storey by storey. Data in `public/data/kladno/`; stills in `public/images/scan3d/`. | `components/scan/*` |
-| AI lifecycle pipeline (data → training → evaluation → cloud → BIM/digital twin) and the Digital twins & BIM Level 3 section. | `components/Lifecycle.tsx`, `content/ai.ts` |
-| Dark "AI lab" theme: tokens in `tailwind.config.ts`, backgrounds and glow utilities (`ai-bg`, `signal-top`, `pulse-dot`, `text-signal`) in `app/globals.css`. | |
-| Systems map: inputs → methods → outcomes, traceable per project | `components/SystemsMap.tsx` |
-| Inference viewer: the same real site photo through YOLO11x-seg, U-Net and FPN, with a drag comparison | `components/InferenceViewer.tsx` |
-| Before/after sliders using real inputs and outputs (drawings, point cloud, crack masks) | `components/CompareSlider.tsx` |
-| Dimensional project cards (tilt and hover reveal) | `components/WorkCard.tsx` |
-| Career laid out as a construction-programme (Gantt) timeline | `components/Programme.tsx` |
-| Case studies with five chapters (challenge → input data → workflow → result → impact), a sticky chapter bar and reading progress | `app/projects/[slug]/page.tsx` |
-| Animated SVG charts with tooltips and data tables | `components/charts/Charts.tsx` |
+| **Hero: CAD-to-BIM on real data** | Three structural plans of a building from my model's **test split** (public BLD-ST data). My 8-class YOLOv8-seg model's **268 real detections** are shown with confidence scores, then extruded level by level into a 3D frame. Rejected detections, such as a "pile" on an upper floor, are shown and explained |
+| **Scan-to-BIM on real data** | 120,000 points from the 250.5 M-point Kladno station scan, coloured by the element of my final IFC model they support. The IFC is revealed storey by storey inside the scan |
+| **Six evidence-led case studies** | Challenge → input data → workflow → result → impact, with charts, data tables, limitations and sources |
+| **Quality** | Lighthouse desktop 100 / 100 / 100 / 100 (performance, accessibility, best practices, SEO). No console errors. No horizontal overflow from 375 px up. WCAG AA contrast |
 
-Motion runs only when JavaScript is available **and** the visitor has not asked for reduced motion (`html[data-motion="ok"]`, set in `app/layout.tsx`). Without that, all content is fully visible and static. The 3D module (~150 KB gzipped) is loaded after first paint during idle time, and it pauses when off-screen or when the tab is hidden.
+<table>
+<tr>
+<td width="50%"><img src="public/images/cad/plans-d.webp" alt="Real structural plans with AI detections"><br/><sub>Plans with the model's detections and confidence</sub></td>
+<td width="50%"><img src="public/images/scan3d/model-d.webp" alt="IFC model revealed inside the Kladno point cloud"><br/><sub>Scan-to-BIM: IFC model inside the scan</sub></td>
+</tr>
+</table>
+
+## Architecture
+
+```mermaid
+flowchart LR
+    C[content/*.ts<br/>text, metrics, sources] --> P[Next.js 15 App Router<br/>static export]
+    D[public/data<br/>quantised binary + JSON] --> V[three.js scenes<br/>components/cad · components/scan]
+    V --> P
+    P --> O[out/ static HTML, JS, WebP]
+    O --> A[GitHub Actions<br/>deploy.yml]
+    A --> G[GitHub Pages]
+```
+
+- **Content is data.** All text, metrics and evidence paths live in `content/`, and components render them. `lib/cite.ts` turns each metric's `source` into a readable citation.
+- **3D stays light.** Plan textures are WebP. Detections are JSON. Points and meshes are int16-quantised binary: about 1 MB for the scan scene, and phones load 50k points instead of 120k. The scenes load only when near the viewport, pause off-screen, respect `prefers-reduced-motion`, and fall back to still images when WebGL is unavailable or the device is low-power.
+- **No runtime third parties.** Fonts are self-hosted, with no analytics, trackers or external requests.
+
+## Project structure
+
+```
+app/                     routes: home, /projects/[slug], /experience, /research, /about, 404
+components/cad/          CAD-to-BIM WebGL scene (plans -> detections -> 3D build)
+components/scan/         Scan-to-BIM WebGL scene (points -> segmentation -> IFC reveal)
+components/charts/       SVG charts with tooltips and accessible data tables
+content/                 profile, projects, experience, research, AI lifecycle (single source of truth)
+public/data/             real data for the 3D scenes
+public/images/           WebP assets (provenance: docs/ASSET_SOURCES.md)
+scripts/                 asset preparation and CV build (scripts/cv/cv.html -> Mohamed_Ragab_CV.pdf)
+.github/workflows/       deploy.yml: build + publish to GitHub Pages on every push to main
+```
 
 ## Run locally
 
 Requires Node.js 18.18+ (22 recommended).
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run build      # static export to ./out
-npm start          # serve ./out locally
+npm ci
+npm run dev          # http://localhost:3000
+npm run typecheck    # tsc --noEmit
+npm run build        # static export to ./out
+npm start            # serve ./out
 ```
+
+Windows, macOS and Linux all work the same way. On Windows, use PowerShell or Git Bash.
 
 ## Deploy
 
-Deployment is automatic. `.github/workflows/deploy.yml` builds the site and publishes `out/` to GitHub Pages whenever you push to `main`. You can also run it by hand from **Actions → Deploy portfolio to GitHub Pages → Run workflow**.
+Deployment is automatic: `.github/workflows/deploy.yml` builds the site and publishes `out/` to GitHub Pages on every push to `main`. To run it by hand, open **Actions → Deploy portfolio to GitHub Pages → Run workflow**.
 
-To use **Vercel** or **Netlify** instead, import this repository in their dashboard. Use the build command `npm run build` and the output directory `out`. No further configuration is needed.
+To host on **Vercel** or **Netlify** instead, import the repository and set build command `npm run build` and output directory `out`.
 
-## Connect a custom domain later
+### Custom domain
 
-1. Buy a domain, for example `mohamedragab.com` or `mohamedragab.dev`.
-2. On GitHub, open **Settings → Pages → Custom domain**, enter the domain and save. GitHub commits a `CNAME` file for you.
-3. At your domain registrar, add DNS records:
-   - **Apex domain** (`mohamedragab.com`): four `A` records pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`. Add `AAAA` records too if the registrar supports IPv6: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153` and `2606:50c0:8003::153`.
-   - **`www` subdomain**: a `CNAME` record pointing to `mohamedragab4554.github.io`.
-4. When the DNS check passes (minutes to a few hours), tick **Enforce HTTPS**.
-5. Optional: verify the domain under **Settings → Pages → Verified domains** to protect it.
+1. On GitHub, open **Settings → Pages → Custom domain**, enter the domain and save. GitHub commits a `CNAME` file.
+2. At your registrar, add DNS records:
+   - **Apex domain:** four `A` records, to `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153` (plus `AAAA` records `2606:50c0:8000::153` to `8003::153` if IPv6 is supported).
+   - **`www`:** a `CNAME` record to `mohamedragab4554.github.io`.
+3. When the DNS check passes, tick **Enforce HTTPS**. Paths are root-relative, so nothing else changes.
 
-The site uses root-relative paths, so it works on a custom domain without changes.
-
-## Update content
-
-All text and numbers live in `content/`. You rarely need to edit components.
+## Updating content
 
 | File | Controls |
 |---|---|
-| `content/profile.ts` | Name, role title, headline, contact details (email, LinkedIn, `phones`), proof metrics, capability pillars, and the switches `showEmployerNames` and `useIndustryPhotos` |
-| `content/projects.ts` | Case studies: summary, challenge, what I did, workflow steps, tools, metrics, charts, gallery, limitations, sources, code links |
-| `content/story.ts` | Project accent colours, input-data cards, before/after pairs, inference-viewer images, systems map, programme timeline, and the home-page "Beyond the model" showcase (`showcase`) |
-| `content/experience.ts` | Roles and grouped skills |
-| `content/research.ts` | Dissertation, education, certifications |
-| `content/ai.ts` | AI lifecycle stages and headline stats, BIM Level 3 building blocks, digital-twin loop |
+| `content/profile.ts` | Name, title, headline, contact links, proof metrics, capability pillars, and the switches `showEmployerNames` / `useIndustryPhotos` |
+| `content/projects.ts` | Case studies: summary, what I did, workflow, tools, metrics (each with `source`), charts, gallery, limitations, code links |
+| `content/story.ts` | Accent colours, input-data cards, before/after pairs, inference viewer, systems map, programme timeline |
+| `content/experience.ts` · `research.ts` · `ai.ts` | Roles and skills · dissertation, education, certifications · AI lifecycle and digital-twin content |
 
-- **Edit text or a metric:** change the value in `content/`, commit and push. The site redeploys in about 2 minutes.
-- **Add a project:** copy an object in `projects.ts` and give it a new `slug`. Then add its accent, inputs and optional comparison in `story.ts`, and put images in `public/images/<slug>/`. The page `/projects/<slug>/` is generated automatically.
-- **Add or replace images:** use WebP, under about 1,600 px wide. `scripts/prepare_assets.py` and `scripts/prepare_interactive.py` regenerate them from the original files; originals are never modified.
-- **Sources:** keep the evidence path in each metric's `source`. `lib/cite.ts` turns it into a readable citation on the page; add a rule there for a new source folder.
-- **CV download:** `public/Mohamed_Ragab_CV.pdf` is generated from `scripts/cv/cv.html` with `python scripts/build_cv.py`. You can also replace the PDF with your own file under the same name.
-
-You can edit files directly on github.com: open the file, click the pencil icon, then **Commit changes**. The site redeploys automatically.
-
-## Visual assets and sources
-
-Every image is a real input, output or screenshot from my own project files. Faces, addresses, coordinates and client identifiers are cropped or blurred, and client drawings are not reproduced. The hero visual is procedural and illustrative, and the page labels it as such.
-
-| File | Source |
-|---|---|
-| `/images/dissertation/unet-outputs.webp` | MSc\Dissertation\02-pub\Diss\Mohamed Ragab-B00968029.pdf (Fig. 18, PDF p.36) |
-| `/images/dissertation/fpn-multidefect.webp` | MSc\Dissertation\02-pub\Diss\Mohamed Ragab-B00968029.pdf (Fig. 22, PDF p.40) |
-| `/images/dissertation/yolo-false-positives.webp` | MSc\Dissertation\02-pub\Diss\Mohamed Ragab-B00968029.pdf (Fig. 20, PDF p.39) |
-| `/images/dissertation/external-validation.webp` | MSc\Dissertation\02-pub\Diss\Mohamed Ragab-B00968029.pdf (Fig. 16, PDF p.34) |
-| `/images/dissertation/multidefect-site.webp` | MSc\Dissertation\02-pub\Diss\Mohamed Ragab-B00968029.pdf (Fig. 19, PDF p.37) |
-| `/images/dissertation/unet-loss.webp` | MSc\Dissertation\02-pub\Diss\Mohamed Ragab-B00968029.pdf (Fig. 17, PDF p.35) |
-| `/images/dissertation/yolo11x-val-batch.webp` | MSc\Dissertation\Final\Final\11x-val_batch0_pred.jpg |
-| `/images/aecom/revit-tank.webp` | AECAI\Aecom\TANK.png (copy of MSc\BEN-715-IND work) |
-| `/images/aecom/tank-site-model.webp` | CV\01-TEMP-UNI\01-Ganeral BIM\Egypt\Mohamed_Ragab_AI_Driven_Digital_Twin_Portfolio-1 (1).pdf p.5 |
-| `/images/aecom/crack-classes.webp` | AECAI\Aecom\Class2.png |
-| `/images/aecom/crack-masks.webp` | AECAI\Aecom\MASK-RCNN.png |
-| `/images/aecom/powerbi-3d.webp` | AECAI\Aecom\IOT.png |
-| `/images/aecom/live-table.webp` | Digital_Twin_Portfolio PDF p.6 |
-| `/images/aecom/mobile-view.webp` | Digital_Twin_Portfolio PDF p.7 |
-| `/images/aecom/vgg16-curves.webp` | MSc\BEN-715-IND\REPORT\Mohamed Ragab - B00968029.pdf (Fig. 9) |
-| `/images/aecom/cnn-baseline-curves.webp` | MSc\BEN-715-IND\REPORT\Mohamed Ragab - B00968029.pdf (Fig. 8) |
-| `/images/brinell/revit-render.webp` | Digital_Twin_Portfolio PDF p.2 (model: MSc\BEN-714\01-PROJECT\00-Final\*.rvt) |
-| `/images/brinell/revit-exterior.webp` | Digital_Twin_Portfolio PDF p.4 |
-| `/images/brinell/structural-frame.webp` | Digital_Twin_Portfolio PDF p.4 |
-| `/images/brinell/clash.webp` | Digital_Twin_Portfolio PDF p.4 |
-| `/images/brinell/powerbi.webp` | Digital_Twin_Portfolio PDF p.3 |
-| `/images/brinell/dynamo.webp` | Digital_Twin_Portfolio PDF p.3 |
-| `/images/aecai/dashboard.webp` | AECAI\04-campaign\AECAI APP\1.png |
-| `/images/aecai/asset.webp` | AECAI\04-campaign\AECAI APP\2.png |
-| `/images/aecai/photos-cv.webp` | AECAI\04-campaign\AECAI APP\4.png |
-| `/images/aecai/inspection-form.webp` | AECAI\04-campaign\AECAI APP\5.png |
-| `/images/aecai/ai-scan.webp` | AECAI\04-campaign\AECAI APP\6.png |
-| `/images/aecai/form-builder.webp` | AECAI\04-campaign\AECAI APP\3.png |
-| `/images/drawings/pred-batch-0.webp` | AECAI\AGECS\06-structural elements detection\AGECS\AGECS\outputs\training_runs\beam_wall_seg_v1\val_batch0_pred.jpg |
-| `/images/drawings/pred-batch-1.webp` | ...\beam_wall_seg_v1\val_batch1_pred.jpg |
-| `/images/drawings/pred-batch-2.webp` | ...\beam_wall_seg_v1\val_batch2_pred.jpg |
-| `/images/drawings/confusion.webp` | ...\beam_wall_seg_v1\confusion_matrix_normalized.png |
-| `/images/scan/pointnet-seg.webp` | AECAI\AGECS\02-Scan_to_BIM\01-structural elements\2026-06-08_hospital-synthetic-bimstruct3d\results\figures\02_segmentation_3d.png |
-| `/images/scan/raw-vs-labeled.webp` | ...\hospital-synthetic-bimstruct3d\results\figures\vis_raw_vs_labeled.png |
-| `/images/scan/per-class.webp` | ...\hospital-synthetic-bimstruct3d\results\figures\vis_per_class_isolated.png |
-| `/images/scan/kladno-slab-classification.webp` | AECAI\AGECS\02-Scan_to_BIM\01-structural elements\2026-08-06_kladno-station\outputs\comparison_images\arch_level0_classification.png |
-| `/images/scan/site-structural-plan.webp` | ...\2026-09-01_<client>\PIPELINE_ARCHITECTURE.html (embedded figure; title and coordinates cropped) |
-| `/images/scan/shoring-rejection.webp` | ...\2026-09-01_<client>\PIPELINE_ARCHITECTURE.html (embedded figure; coordinates cropped) |
-| `/images/profile/headshot.webp` | CV\x\me.jpeg |
-| `/images/inference/20250220_092206_input.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_092206 (input) |
-| `/images/inference/20250220_092206_yolo11x.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_092206 (yolo11x) |
-| `/images/inference/20250220_092206_unet.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_092206 (unet) |
-| `/images/inference/20250220_092206_multi.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_092206 (multi) |
-| `/images/inference/20250220_092206_mask.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_092206 (mask) |
-| `/images/inference/20250220_083026_input.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_083026 (input) |
-| `/images/inference/20250220_083026_yolo11x.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_083026 (yolo11x) |
-| `/images/inference/20250220_083026_unet.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_083026 (unet) |
-| `/images/inference/20250220_083026_multi.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_083026 (multi) |
-| `/images/inference/20250220_083026_mask.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_083026 (mask) |
-| `/images/inference/IMG_3442_input.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · IMG_3442 (input) |
-| `/images/inference/IMG_3442_yolo11x.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · IMG_3442 (yolo11x) |
-| `/images/inference/IMG_3442_unet.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · IMG_3442 (unet) |
-| `/images/inference/IMG_3442_multi.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · IMG_3442 (multi) |
-| `/images/inference/IMG_3442_mask.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · IMG_3442 (mask) |
-| `/images/inference/20250220_100459_input.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_100459 (input) |
-| `/images/inference/20250220_100459_yolo11x.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_100459 (yolo11x) |
-| `/images/inference/20250220_100459_unet.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_100459 (unet) |
-| `/images/inference/20250220_100459_multi.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_100459 (multi) |
-| `/images/inference/20250220_100459_mask.webp` | AECAI\v11n vs. v11x vs. v8x\{real life images|crack_detection_outputs_v11x|crack_detection_outputs_unet|multiclass_segmentation_output|crack_detection_outputs_unet\masks} · 20250220_100459 (mask) |
-| `/images/compare/drawings-labels.webp` | AECAI\AGECS\06-structural elements detection\...\beam_wall_seg_v1\val_batch1_labels.jpg |
-| `/images/compare/drawings-pred.webp` | AECAI\AGECS\06-structural elements detection\...\beam_wall_seg_v1\val_batch1_pred.jpg |
-| `/images/compare/scan-raw.webp` | ...\hospital-synthetic-bimstruct3d\results\figures\vis_raw_vs_labeled.png (left half) |
-| `/images/compare/scan-labelled.webp` | ...\hospital-synthetic-bimstruct3d\results\figures\vis_raw_vs_labeled.png (right half) |
-| `/images/compare/tank-crack-image.webp` | AECAI\Aecom\MASK-RCNN.png (bottom-left) |
-| `/images/compare/tank-crack-mask.webp` | AECAI\Aecom\MASK-RCNN.png (top-left) |
+Edit a value, commit, push: the site redeploys in about 2 minutes. Images should be WebP under about 1,600 px wide. `scripts/prepare_*.py` regenerate them from the originals, which are never modified.
 
 ## Accessibility and performance
 
-- Semantic landmarks, a skip link, visible focus rings, and keyboard-operable controls (slider, tabs, radio groups and the image viewer with Esc / ← / →).
-- Every chart has a data table. Every image has alt text. Colour contrast is WCAG AA or better.
-- Fonts are self-hosted (IBM Plex Sans / Mono and Archivo) with `font-display: swap`. There are no third-party requests at runtime.
-- Images are lazy-loaded. The WebGL scene caps its pixel ratio, uses fewer points on small screens, and only renders frames while something is changing.
+- Semantic landmarks, a skip link, visible focus rings, and keyboard-operable sliders, tabs and viewer (Esc / ← / →).
+- Every chart has a data table, and every image has alt text.
+- Motion runs only when JavaScript is available **and** the visitor hasn't asked for reduced motion. Otherwise all content is static and fully visible.
+
+## Related repositories
+
+- [concrete-defect-detection-shm](https://github.com/mohamedragab4554/concrete-defect-detection-shm): YOLO-seg / U-Net / FPN defect models with field validation.
+- [water-tank-crack-digital-twin](https://github.com/mohamedragab4554/water-tank-crack-digital-twin): crack width to Revit, Speckle and Power BI.
+
+## Content and licence
+
+The site's **code** may be read and reused for learning. The **content** (text, images, data, CV) describes my own work and isn't licensed for reuse. Third-party data shown on the site (BLD-ST plans, the Kladno benchmark scan) belongs to its publishers; see [docs/ASSET_SOURCES.md](docs/ASSET_SOURCES.md).

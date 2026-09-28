@@ -37,13 +37,13 @@ export const projects: Project[] = [
       { title: "Data", detail: "Crack-Seg · DACL10k (9,920 images, 18 classes) · 689 industry site photos" },
       { title: "Detect", detail: "YOLO-seg family for fast localisation (640 px input)" },
       { title: "Segment", detail: "U-Net ResNet-50 for crack morphology; FPN–EffNet-B4 for 18 classes" },
-      { title: "Validate", detail: "Held-out test sets plus a manually verified field set (specificity focus)" },
+      { title: "Validate", detail: "Benchmark validation splits plus a manually verified field set (specificity focus)" },
       { title: "Report", detail: "Throughput benchmark and a BIM / digital-twin reporting workflow" },
     ],
     tools: ["Python", "PyTorch 2.5", "Ultralytics YOLO", "segmentation-models-pytorch", "Albumentations", "OpenCV", "RTX 4060 (8 GB)"],
     metrics: [
       { value: "0.807", label: "Box mAP50", context: "YOLOv8x-seg · Crack-Seg test", source: `${DISS} Table 6` },
-      { value: "0.630", label: "mIoU (F1 0.775)", context: "U-Net ResNet-50 · held-out test", source: `${DISS} §4.4` },
+      { value: "0.630", label: "mIoU (F1 0.775)", context: "U-Net ResNet-50 · validation split", source: `${DISS} §4.4` },
       { value: "0.933", label: "Field recall", context: "YOLO11x-seg · 14 of 15 cracked images", source: `${DISS} Table 7` },
       { value: "27 min", label: "689 images, full pipeline + report", context: "≈2.38 s per image", source: `${DISS} Table 8` },
     ],
@@ -124,8 +124,7 @@ export const projects: Project[] = [
       "The field set is small (44 images). It is a robustness check, not a statistically powered benchmark.",
     ],
     links: [
-      { label: "Code: crack detection", href: "https://github.com/mohamedragab4554/crack-detection-in-infrastructure" },
-      { label: "Code: multi-class defect segmentation", href: "https://github.com/mohamedragab4554/multi-class-defect-detection-infrastructure" },
+      { label: "Code, model card & results: concrete-defect-detection-shm", href: "https://github.com/mohamedragab4554/concrete-defect-detection-shm" },
     ],
     sources: [DISS, "MSc\\Dissertation\\Final\\31-08-2025\\results_metrics.csv", "MSc\\Dissertation\\Final\\Final\\*.png", "CV\\CERTIFICATES\\MSC\\MSc_Transcript.pdf (BLD811: 74)"],
     disclosure: "Site photographs were supplied by Amphora Consulting for this research and appear in the submitted dissertation.",
@@ -421,7 +420,7 @@ export const projects: Project[] = [
     ],
     whatIDid: [
       "Built a Revit model from AECOM's 2D drawings, exported it to IFC, and linked crack data back into Revit with Dynamo.",
-      "Trained a crack classifier. A first custom CNN diverged (36.67%); switching to a pretrained VGG16 reached 89.69% accuracy.",
+      "Trained a crack classifier. A first custom CNN over-fitted (36.67% test accuracy); a pretrained VGG16 reached 70.0% on the saved 30-image test run (89.69% reported in the submitted report).",
       "Estimated crack width from masks and classified it against EN 1992-1-1 Table 7.1N (w_max 0.3 mm, XC2) to assign a maintenance action.",
       "Moved visualisation from a browser IFC viewer, which failed on complex BIM files, to Power BI with an embedded 3D Revit visual, a crack table and a mobile layout.",
     ],
@@ -434,8 +433,8 @@ export const projects: Project[] = [
     ],
     tools: ["Autodesk Revit", "Dynamo", "IFC", "Python", "TensorFlow / Keras (VGG16)", "OpenCV", "Power BI", "Speckle"],
     metrics: [
-      { value: "89.69%", label: "Crack classifier accuracy", context: "pretrained VGG16 · 80/10/10 split", source: "MSc\\BEN-715-IND\\REPORT\\Mohamed Ragab - B00968029.pdf §VI" },
-      { value: "36.67%", label: "Baseline custom CNN", context: "first attempt: training diverged", source: "same" },
+      { value: "70.0%", label: "VGG16 crack classifier", context: "saved run, 30 test images · 89.69% in the submitted report", source: "MSc\\BEN-715-IND\\crack_project\\01-Submit\\ML\\ML2.ipynb; report §VI" },
+      { value: "36.67%", label: "Baseline custom CNN", context: "first attempt: over-fitted", source: "same" },
       { value: "0.3 mm", label: "EN 1992 w_max threshold used", context: "Table 7.1N, exposure XC2", source: "same §III.B" },
       { value: "80%", label: "Module mark", context: "BEN715 Industry Project", source: "CV\\CERTIFICATES\\MSC\\MSc_Transcript.pdf" },
     ],
@@ -459,7 +458,11 @@ export const projects: Project[] = [
     ],
     honestNotes: [
       "No camera was installed on site. The live-camera and cloud stages are a proposed architecture, and the report says so.",
-      "Training images came from public crack datasets (Mendeley, Utah State University), not from the tank itself.",
+      "Training images came from public crack datasets (Mendeley, Utah State University), not from the tank itself. They carry no physical scale, so the mm widths rely on an assumed calibration.",
+      "The submitted report states 89.69% for VGG16; the last saved notebook run shows 70.0% on 30 test images. Both are published in the repository.",
+    ],
+    links: [
+      { label: "Code & documentation: water-tank-crack-digital-twin", href: "https://github.com/mohamedragab4554/water-tank-crack-digital-twin" },
     ],
     sources: ["MSc\\BEN-715-IND\\REPORT\\Mohamed Ragab - B00968029.pdf", "MSc\\BEN-715-IND\\crack_project\\*", "AECAI\\Aecom\\*.png"],
   },
