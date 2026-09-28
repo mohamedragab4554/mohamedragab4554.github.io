@@ -15,6 +15,7 @@ import CompareSlider from "@/components/CompareSlider";
 import InferenceViewer from "@/components/InferenceViewer";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 import CadVisual from "@/components/cad/CadVisual";
+import ScanVisual from "@/components/scan/ScanVisual";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -185,6 +186,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <p className="mt-3 max-w-2xl text-[15px] text-white/70">The AI reads the foundation, level 1 and roof plans, detects each structural element, and the detections are built level by level on top of the plans.</p>
             </Reveal>
             <div className="relative mt-8 h-[470px] sm:h-[540px] lg:h-[620px]"><CadVisual /></div>
+          </div>
+        </section>
+      ) : null}
+
+      {p.slug === "scan-to-bim" ? (
+        <section className="relative bg-[#08101D] py-16 text-white sm:py-20" aria-labelledby="scan3d-h">
+          <div className="container-page">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: acc.onDark }}>Real scan · real IFC</p>
+              <h2 id="scan3d-h" className="mt-2 max-w-3xl text-[1.8rem] leading-tight sm:text-[2.2rem]">The Kladno station scan and my final IFC model.</h2>
+              <p className="mt-3 max-w-2xl text-[15px] text-white/70">120,000 points sampled from the 250.5 M-point benchmark scan, coloured by the IFC element they support, then the model revealed storey by storey.</p>
+            </Reveal>
+            <div className="relative mt-8 h-[470px] sm:h-[540px] lg:h-[620px]"><ScanVisual /></div>
           </div>
         </section>
       ) : null}

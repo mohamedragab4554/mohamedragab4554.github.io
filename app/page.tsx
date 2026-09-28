@@ -5,7 +5,6 @@ import { dissertation } from "@/content/research";
 import SectionHeading from "@/components/SectionHeading";
 import ChartBlock from "@/components/charts/Charts";
 import Contact from "@/components/Contact";
-import HeroVisual from "@/components/hero/HeroVisual";
 import CountUp from "@/components/CountUp";
 import { cite } from "@/lib/cite";
 import Reveal from "@/components/Reveal";
@@ -15,6 +14,7 @@ import WorkCard from "@/components/WorkCard";
 import Programme from "@/components/Programme";
 import Showcase from "@/components/Showcase";
 import CadVisual from "@/components/cad/CadVisual";
+import ScanVisual from "@/components/scan/ScanVisual";
 import Lifecycle from "@/components/Lifecycle";
 import { aiStats, level3, twinLoop } from "@/content/ai";
 
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
 
           <div className="relative -mx-4 h-[470px] sm:mx-0 sm:h-[500px] lg:-mr-16 lg:h-[590px]">
-            <HeroVisual />
+            <CadVisual eager />
           </div>
         </div>
 
@@ -69,14 +69,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------- CAD-TO-BIM AI ---------- */}
-      <section id="cad" className="signal-top scroll-mt-16 overflow-hidden bg-[#08101D] py-20 text-white sm:py-24" aria-labelledby="cad-title">
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_80%_50%,rgba(142,166,245,0.10),transparent_70%)]" />
+      {/* ---------- SCAN-TO-BIM (real data) ---------- */}
+      <section id="cad" className="signal-top scroll-mt-16 overflow-hidden bg-[#08101D] py-20 text-white sm:py-24" aria-labelledby="scan-title">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_80%_50%,rgba(197,179,255,0.09),transparent_70%)]" />
         <div className="container-page relative grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:items-center">
           <Reveal>
-            <SectionHeading id="cad-title" dark label="CAD-to-BIM AI" title="From 2D structural plans to a 3D model." intro="A trained segmentation model reads each plan and finds every pile, column, beam, wall and opening. The detections become structured element data, built level by level into BIM." />
+            <SectionHeading id="scan-title" dark label="Scan-to-BIM · real data" title="From a 250-million-point scan to an IFC model." intro="A real laser scan of Kladno railway station, and the IFC model my pipeline produced from it, shown in the same coordinates. Every wall, slab and window is backed by the points around it." />
             <dl className="grid grid-cols-2 gap-3">
-              {[["0.941", "Column mAP50", "P 0.944 · R 0.935"], ["0.902", "8-class val mAP50", "box · mask 0.893"], ["21,009", "Training tiles", "six public sources"], ["8", "Element classes", "incl. piles & openings"]].map(([v, l, c]) => (
+              {[["250.5 M", "Points in the scan", "Kladno station benchmark"], ["190", "IFC walls extracted", "12 slabs · 10 windows · 1 roof"], ["79%", "Of sampled points", "support an IFC element"], ["3", "Storeys", "L0 · L1 · L2"]].map(([v, l, c]) => (
                 <div key={l} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
                   <dd className="text-[1.6rem] font-semibold leading-none"><CountUp value={v} /></dd>
                   <dt className="mt-2 text-[13px] text-white/85">{l}</dt>
@@ -84,10 +84,10 @@ export default function Home() {
                 </div>
               ))}
             </dl>
-            <Link href="/projects/structural-drawing-understanding/" className="mt-6 inline-flex text-[14px] font-medium text-[#8EA6F5] hover:underline">Read the CAD-to-BIM case study →</Link>
+            <Link href="/projects/scan-to-bim/" className="mt-6 inline-flex text-[14px] font-medium text-[#C5B3FF] hover:underline">Read the Scan-to-BIM case study →</Link>
           </Reveal>
           <div className="relative -mx-4 h-[470px] sm:mx-0 sm:h-[520px] lg:-mr-10 lg:h-[600px]">
-            <CadVisual />
+            <ScanVisual />
           </div>
         </div>
       </section>

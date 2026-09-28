@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * CAD-to-BIM visual: three stacked structural plans, AI detection on each, then a
- * level-by-level 3D build on top of the plans. Loads when it approaches the viewport;
- * a still of the stacked plans is server-rendered, and low-power devices keep a still
- * of the finished model.
+ * Real Scan-to-BIM visual: Kladno station laser scan (public benchmark) + my final IFC model.
+ * Loads its ~1 MB of data only when the section approaches the viewport. Phones load
+ * 50,000 points; desktops 120,000.
  */
-export default function CadVisual({ eager = false }: { eager?: boolean }) {
+export default function ScanVisual() {
   const root = useRef<HTMLDivElement>(null);
   const [mode, setMode] = useState<"poster" | "static">("poster");
 
@@ -23,40 +22,40 @@ export default function CadVisual({ eager = false }: { eager?: boolean }) {
     if (!gl || weak) { setMode("static"); return; }
     const small = window.innerWidth < 768 || (nav.hardwareConcurrency ?? 8) <= 4;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const bin = (u: string) => fetch(u).then((r) => { if (!r.ok) throw new Error(u); return r.arrayBuffer(); });
     const load = () => {
-      const suf = small ? "-m" : "";
-      const img = (i: number) => new Promise<HTMLImageElement>((ok, bad) => { const im = new Image(); im.decoding = "async"; im.onload = () => ok(im); im.onerror = bad; im.src = `/data/cad/plan${i}${suf}.webp`; });
-      Promise.all([import("./cadData"), import("./CadScene"), import("three"), fetch("/data/cad/dets.json").then((r) => r.json()), img(0), img(1), img(2)])
-        .then(([data, mod, THREE, json, a, b, c]) => {
+      Promise.all([import("./ScanScene"), fetch("/data/kladno/meta.json").then((r) => r.json()), bin("/data/kladno/points-a.bin"), small ? Promise.resolve(null) : bin("/data/kladno/points-b.bin"), bin("/data/kladno/mesh.bin")])
+        .then(([mod, meta, a, b, m]) => {
           if (cancelled) return;
-          const tex = [a, b, c].map((im) => { const t = new THREE.Texture(im); t.needsUpdate = true; return t; });
-          dispose = mod.startCad(el, data.buildCad(json), tex, { reduced, small, onReady: () => el.classList.add("ready") });
+          let pts = new Uint8Array(a);
+          if (b) { const all = new Uint8Array(a.byteLength + b.byteLength); all.set(new Uint8Array(a), 0); all.set(new Uint8Array(b), a.byteLength); pts = all; }
+          dispose = mod.startScan(el, meta, pts, new Int16Array(m), { reduced, small, onReady: () => el.classList.add("ready") });
         })
         .catch(() => setMode("static"));
     };
     const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { io.disconnect(); load(); } }, { rootMargin: "600px 0px" });
-    if (eager) load(); else io.observe(el);
+    io.observe(el);
     return () => { cancelled = true; io.disconnect(); dispose?.(); el.classList.remove("ready"); };
-  }, [eager]);
+  }, []);
 
-  const still = mode === "static" ? "model" : "plans";
+  const still = mode === "static" ? "model" : "scan";
   return (
     <div
       ref={root}
       className={`hv ${mode === "static" ? "hv-static" : ""}`}
       role="img"
-      aria-label="CAD-to-BIM on real data: three structural plans of a test building (foundation, typical floor and level +28.44) are stacked one storey apart; my trained segmentation model detects piles, beams, columns, walls and openings on each plan; the detections are then built level by level into a 3D model on top of the plans."
+      aria-label="Scan-to-BIM on real data: a laser scan of Kladno railway station (250.5 million points, 120,000 shown) is segmented into walls, slabs, roof and openings, each element is extracted, and my final IFC model of the station is revealed storey by storey inside the scan."
     >
       <picture>
-        <source media="(max-width: 519px)" srcSet={`/images/cad/${still}-m.webp`} />
+        <source media="(max-width: 519px)" srcSet={`/images/scan3d/${still}-m.webp`} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="hv-still" src={`/images/cad/${still}-d.webp`} alt="" aria-hidden="true" loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" />
+        <img className="hv-still" src={`/images/scan3d/${still}-d.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       </picture>
       <canvas data-h="gl" className="hv-gl" aria-hidden="true" />
       <div data-h="labels" aria-hidden="true" />
       <div data-h="hud" className="hv-hud" aria-live="polite">
-        <div className="hv-ttl"><span data-h="stage">01 Plans</span><i data-h="pts" /></div>
-        <div className="hv-msg" data-h="msg">Three real structural plans of a test building the model never saw in training.</div>
+        <div className="hv-ttl"><span data-h="stage">01 Scan</span><i data-h="pts" /></div>
+        <div className="hv-msg" data-h="msg">Real laser scan of Kladno railway station: 250.5 M points (120,000 shown).</div>
         <div className="hv-ai">
           <svg className="hv-nn" viewBox="0 0 44 30" aria-hidden="true">
             <g>
@@ -70,18 +69,18 @@ export default function CadVisual({ eager = false }: { eager?: boolean }) {
             </g>
           </svg>
           <div>
-            <b>My trained AI model</b>
-            <span>YOLOv8-seg, 8 classes, trained on 21,009 labelled plan tiles</span>
-            <span className="hv-io">Fed: 3 plans of held-out test building BLD-09</span>
+            <b>My Scan-to-BIM engine</b>
+            <span>Density analysis + my geometry classifiers (PCA, connected components) → IFC</span>
+            <span className="hv-io">Fed: <em data-h="in">250.5 M</em> scan points</span>
           </div>
         </div>
         <ul data-h="list" />
       </div>
-      <p className="hv-note">Real plans (public BLD-ST dataset) and real model predictions. Plans stacked one storey apart; the 3D is a simple extrusion of the detections.</p>
+      <p className="hv-note">Real scan (public Kladno station benchmark) and my final IFC output, shown in their shared coordinates.</p>
       <div data-h="tip" className="hv-tip" aria-hidden="true" />
       <div className="hv-bar">
         <div data-h="chips" className="hv-chips" />
-        <span data-h="hint" className="hv-hint">Drag to rotate · hover an element to see what the AI detected</span>
+        <span data-h="hint" className="hv-hint">Drag to rotate · hover the model to see its supporting points</span>
         <button data-h="replay" className="hv-replay" type="button" aria-label="Replay the sequence">Replay</button>
       </div>
     </div>
