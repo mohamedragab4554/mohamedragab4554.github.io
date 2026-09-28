@@ -57,7 +57,7 @@ export default function HeroVisual() {
       ) : null}
 
       {/* stage readout */}
-      <div className="pointer-events-none absolute bottom-3 left-3 right-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-mono text-[10.5px] uppercase tracking-[0.12em] sm:bottom-5 sm:left-5">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-4 gap-y-1.5 bg-gradient-to-t from-[#0A1220] via-[#0A1220]/85 to-transparent px-3 pb-3 pt-8 font-mono text-[10.5px] uppercase tracking-[0.12em] sm:bg-none sm:px-5 sm:pb-5 sm:pt-0">
         {STAGES.map((s, i) => (
           <span key={s.t} className={`flex items-center gap-1.5 transition-colors duration-500 ${i <= stage ? "text-[#CDE9E7]" : "text-white/30"}`}>
             <span className={`h-1.5 w-1.5 rounded-full transition-colors duration-500 ${i === stage ? "bg-[#F0A35E]" : i < stage ? "bg-[#5FD3CD]" : "bg-white/25"}`} />

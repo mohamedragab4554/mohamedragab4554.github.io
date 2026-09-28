@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Chart } from "@/content/types";
 import { useInView } from "@/lib/useInView";
+import { cite } from "@/lib/cite";
 
 const COLORS = ["var(--viz-1)", "var(--viz-2)", "var(--viz-3)"];
 
@@ -267,7 +268,7 @@ export default function ChartBlock({ chart }: { chart: Chart }) {
       </div>
       {chart.note ? <p className="mt-3 text-[13px] leading-relaxed text-ink-soft">{chart.note}</p> : null}
       <DataTable chart={chart} />
-      <p className="mt-2 break-words font-mono text-[10.5px] text-ink-muted">Source: {chart.source}</p>
+      <p className="mt-2 break-words font-mono text-[10.5px] text-ink-muted">Source: {cite(chart.source)}</p>
     </figure>
   );
 }

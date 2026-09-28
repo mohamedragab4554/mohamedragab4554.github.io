@@ -55,15 +55,16 @@ All text and numbers live in `content/`. You rarely need to edit components.
 
 | File | Controls |
 |---|---|
-| `content/profile.ts` | Name, headline, contact details, proof metrics, capability pillars, and the switches `showEmployerNames` and `useIndustryPhotos` |
+| `content/profile.ts` | Name, role title, headline, contact details (email, LinkedIn, `phones`), proof metrics, capability pillars, and the switches `showEmployerNames` and `useIndustryPhotos` |
 | `content/projects.ts` | Case studies: summary, challenge, what I did, workflow steps, tools, metrics, charts, gallery, limitations, sources, code links |
-| `content/story.ts` | Project accent colours, input-data cards, before/after pairs, inference-viewer images, systems map, programme timeline |
+| `content/story.ts` | Project accent colours, input-data cards, before/after pairs, inference-viewer images, systems map, programme timeline, and the home-page "Beyond the model" showcase (`showcase`) |
 | `content/experience.ts` | Roles and grouped skills |
 | `content/research.ts` | Dissertation, education, certifications |
 
 - **Edit text or a metric:** change the value in `content/`, commit and push. The site redeploys in about 2 minutes.
 - **Add a project:** copy an object in `projects.ts` and give it a new `slug`. Then add its accent, inputs and optional comparison in `story.ts`, and put images in `public/images/<slug>/`. The page `/projects/<slug>/` is generated automatically.
 - **Add or replace images:** use WebP, under about 1,600 px wide. `scripts/prepare_assets.py` and `scripts/prepare_interactive.py` regenerate them from the original files; originals are never modified.
+- **Sources:** keep the evidence path in each metric's `source`. `lib/cite.ts` turns it into a readable citation on the page; add a rule there for a new source folder.
 - **CV download:** `public/Mohamed_Ragab_CV.pdf` is generated from `scripts/cv/cv.html` with `python scripts/build_cv.py`. You can also replace the PDF with your own file under the same name.
 
 You can edit files directly on github.com: open the file, click the pencil icon, then **Commit changes**. The site redeploys automatically.

@@ -11,7 +11,7 @@ export default function ExperiencePage() {
   return (
     <>
       <section className="container-page py-16 sm:py-20">
-        <SectionHeading
+        <SectionHeading as="h1"
           label="Experience"
           title="Engineering practice first, then AI and digital delivery."
           intro="A year of structural and façade delivery, an industry project with AECOM, and applied R&D in inspection AI, drawing understanding and Scan-to-BIM."

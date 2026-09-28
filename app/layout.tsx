@@ -32,10 +32,10 @@ const display = localFont({
 });
 
 export const metadata: Metadata = {
-  title: { default: `${profile.name}: Structural Engineer · Computer Vision & BIM`, template: `%s · ${profile.name}` },
+  title: { default: `${profile.name}: ${profile.title}`, template: `%s · ${profile.name}` },
   description:
-    "Portfolio of Mohamed Ragab: civil and structural engineer working in computer vision for inspection, structural drawing understanding, Scan-to-BIM and BIM coordination.",
-  openGraph: { title: profile.name, description: profile.headline, type: "website", images: ["/images/profile/headshot.webp"] },
+    "Mohamed Ragab, AI & Digital Construction Engineer: structural engineering, BIM and computer vision applied to inspection, structural drawings, Scan-to-BIM and digital twins. Every metric traced to its source.",
+  openGraph: { title: `${profile.name}: ${profile.title}`, description: profile.headline, type: "website", images: ["/images/profile/headshot.webp"] },
   icons: { icon: "/favicon.svg" },
 };
 

@@ -325,11 +325,11 @@ export const projects: Project[] = [
     summary:
       "A human-in-the-loop pipeline that turns a laser scan into an IFC model of slabs, walls and columns. Every element must be backed by real point support and a reviewer checks it before sign-off.",
     hero: {
-      src: "/images/scan/raw-vs-labeled.webp",
-      alt: "Side-by-side 3D renders of an unlabelled point cloud and the same cloud coloured by structural class",
-      caption: "Synthetic interior: raw scan vs class-labelled points (walls, floor, ceiling, doors, columns).",
-      width: 1800,
-      height: 863,
+      src: "/images/scan/shoring-rejection.webp",
+      alt: "Plan-view point-density map of a real site scan showing a lattice of thin members",
+      caption: "Real contractor scan, plan-view point density: thin lattice members read as temporary shoring, so the pipeline keeps them out of the IFC.",
+      width: 1200,
+      height: 854,
     },
     challenge: [
       "Real scans are enormous: the site scan here was about 264 million points (7.7 GB). They also contain scaffolding, shoring and clutter that automatic pipelines mistake for structure.",
@@ -383,7 +383,6 @@ export const projects: Project[] = [
       { src: "/images/scan/pointnet-seg.webp", alt: "3D scatter of a segmented room point cloud", caption: "PointNet++ semantic segmentation output (synthetic interior).", width: 1400, height: 862 },
       { src: "/images/scan/per-class.webp", alt: "Five small renders isolating wall, floor, ceiling, door and column points", caption: "Per-class isolation used for QA.", width: 1900, height: 415, wide: true },
       { src: "/images/scan/site-structural-plan.webp", alt: "Plan of a building footprint with labelled wall and column candidates", caption: "Contractor site scan: classified walls and columns over the slab footprint (coordinates removed).", width: 1300, height: 1357 },
-      { src: "/images/scan/shoring-rejection.webp", alt: "Plan density map showing a lattice of thin members", caption: "Temporary-works check: thin lattice members, not a solid column, so rejected.", width: 1200, height: 854 },
       { src: "/images/scan/kladno-slab-classification.webp", alt: "Plot of slab candidate classification on a railway station scan", caption: "Public Kladno station benchmark: slab-candidate classification.", width: 732, height: 759 },
     ],
     honestNotes: [
@@ -410,11 +409,11 @@ export const projects: Project[] = [
     summary:
       "A concept workflow linking crack detection, Eurocode-based width classification and a Revit model inside Power BI, so engineers can triage tank condition remotely.",
     hero: {
-      src: "/images/aecom/revit-tank.webp",
-      alt: "Revit model of an elevated concrete water tank on a steel frame",
-      caption: "Revit model of the tank, built from AECOM's 2D drawings.",
-      width: 1600,
-      height: 848,
+      src: "/images/aecom/powerbi-3d.webp",
+      alt: "Power BI report with a 3D tank view and a crack table with maintenance recommendations",
+      caption: "Power BI: the 3D Revit model beside the live crack register and recommended actions.",
+      width: 1485,
+      height: 702,
     },
     challenge: [
       "Cracks in concrete water tanks cause leakage and deterioration. Tanks are often remote or difficult to access, which makes manual inspection slow and hazardous.",
@@ -449,12 +448,13 @@ export const projects: Project[] = [
       "Bridges the structural standard (crack-width limits) with data science and BIM, which is the kind of problem digital-delivery teams bring to consultants.",
     ],
     gallery: [
-      { src: "/images/aecom/powerbi-3d.webp", alt: "Power BI report with a 3D tank view and a crack table with maintenance recommendations", caption: "Power BI: 3D Revit view beside the crack register and recommendations.", width: 1485, height: 702, wide: true },
+      { src: "/images/aecom/tank-site-model.webp", alt: "Revit site model with the tank on terrain", caption: "Revit site model of the tank, built from AECOM's 2D drawings.", width: 1600, height: 612, wide: true },
+      { src: "/images/aecom/revit-tank.webp", alt: "Revit model of an elevated concrete water tank on a steel frame", caption: "Tank model in Revit, exported to IFC and linked to crack data with Dynamo.", width: 1600, height: 848, wide: true },
+      { src: "/images/aecom/live-table.webp", alt: "Crack register table with crack type, image link, suggested maintenance and width", caption: "Crack register: EN 1992 width class and a recommended action for each crack.", width: 642, height: 595 },
       { src: "/images/aecom/crack-classes.webp", alt: "Crack photos outlined in green with class labels such as Severe Crack", caption: "Width-based classes; severe (>0.3 mm) flagged for immediate repair.", width: 732, height: 722 },
       { src: "/images/aecom/crack-masks.webp", alt: "Binary crack masks above the original crack photos", caption: "Pixel masks used for width estimation.", width: 638, height: 630 },
       { src: "/images/aecom/vgg16-curves.webp", alt: "Accuracy and loss curves for the VGG16 classifier", caption: "VGG16 transfer learning: accuracy and loss.", width: 1189, height: 490 },
       { src: "/images/aecom/cnn-baseline-curves.webp", alt: "Diverging validation loss for the first CNN", caption: "First CNN: validation loss diverged, prompting the switch to VGG16.", width: 1189, height: 390 },
-      { src: "/images/aecom/tank-site-model.webp", alt: "Revit site model with the tank on terrain", caption: "Site context model.", width: 1600, height: 612, wide: true },
       { src: "/images/aecom/mobile-view.webp", alt: "Phone mock-up showing the 3D tank view and a Live button", caption: "Mobile view concept, fed from the same dataset.", width: 720, height: 720 },
     ],
     honestNotes: [

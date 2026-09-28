@@ -4,10 +4,11 @@
  */
 export const profile = {
   name: "Mohamed Ragab",
-  title: "Structural Engineer · Computer Vision & BIM",
-  headline: "Engineering intelligence for the built environment.",
+  title: "AI & Digital Construction Engineer",
+  discipline: "Structural engineering · BIM · Computer vision",
+  headline: "Where structural engineering meets AI and BIM.",
   intro:
-    "I am a civil and structural engineer who builds computer vision, BIM and Scan-to-BIM systems, and tests them against real inspection photos, structural drawings and laser scans.",
+    "I am a structural engineer and computer-vision researcher. I build AI, BIM and automation workflows that turn site photos, structural drawings and laser scans into data an engineer can check and sign off.",
   roles: [
     "AI / Computer Vision Engineer",
     "Digital Construction & BIM",
@@ -17,8 +18,11 @@ export const profile = {
   email: "mohamedragab6770@gmail.com",
   linkedin: "https://www.linkedin.com/in/mohamed-ragab-278208199",
   linkedinLabel: "linkedin.com/in/mohamed-ragab-278208199",
-  /** Phone is intentionally hidden: CVs list two different numbers. Set a value to show it. */
-  phone: "" as string,
+  /** Phone numbers shown on the site and CV (confirmed by Mohamed, 28 Sep 2026). Empty the list to hide them. */
+  phones: [
+    { label: "UK", display: "+44 7412 891254", tel: "+447412891254" },
+    { label: "Egypt", display: "+20 10 9756 1115", tel: "+201097561115" },
+  ] as { label: string; display: string; tel: string }[],
   /** Location intentionally generic until confirmed (CVs list Belfast and Cairo). */
   location: "United Kingdom · Egypt · open to remote",
   headshot: { src: "/images/profile/headshot.webp", width: 800, height: 839 },
@@ -62,20 +66,28 @@ export const pillars = [
     title: "Computer vision for inspection",
     body: "I build detection and segmentation models for concrete defects: cracks, spalling, exposed rebar and 18-class bridge deterioration. I validate them on noisy site imagery, not only on curated benchmarks.",
     tags: ["YOLOv8/11-seg", "U-Net", "FPN", "PyTorch"],
+    href: "/projects/concrete-defect-detection/",
+    hrefLabel: "Evidence: dissertation",
   },
   {
     title: "Drawing & document intelligence",
     body: "I turn structural plans into structured elements: columns, beams, walls, openings and piles. The work combines tiled instance segmentation, geometry-aware post-processing and dataset engineering at scale.",
-    tags: ["Instance segmentation", "OCR association", "COCO/YOLO", "CVAT"],
+    tags: ["Instance segmentation", "Tiled inference & TTA", "COCO/YOLO", "CVAT"],
+    href: "/projects/structural-drawing-understanding/",
+    hrefLabel: "Evidence: drawing AI",
   },
   {
     title: "BIM, Scan-to-BIM & digital twins",
     body: "I build federated Revit models, run clash coordination and connect Power BI to the models. I also reconstruct IFC models from point clouds with a human-in-the-loop review step.",
     tags: ["Revit", "Navisworks", "IFC / IfcOpenShell", "Open3D"],
+    href: "/projects/brinell-building-bim/",
+    hrefLabel: "Evidence: BIM project",
   },
   {
     title: "Structural engineering judgement",
     body: "Before this work I delivered a year of structural and façade design packages to AISC, ASCE, ACI and the Florida Building Code. That practice shapes what I ask my models to measure and flag.",
     tags: ["ETABS", "SAP2000", "IDEA StatiCa", "EN 1992"],
+    href: "/experience/",
+    hrefLabel: "Evidence: experience",
   },
 ];

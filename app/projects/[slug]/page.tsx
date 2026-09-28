@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProject } from "@/content/projects";
 import { profile } from "@/content/profile";
+import { cite } from "@/lib/cite";
 import { accents, compares, inputs } from "@/content/story";
 import Gallery from "@/components/Gallery";
 import ChartBlock from "@/components/charts/Charts";
@@ -12,6 +13,7 @@ import StoryNav from "@/components/StoryNav";
 import StepExplorer from "@/components/StepExplorer";
 import CompareSlider from "@/components/CompareSlider";
 import InferenceViewer from "@/components/InferenceViewer";
+import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -112,7 +114,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="container-page relative pb-10">
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 lg:grid-cols-4">
             {p.metrics.map((m) => (
-              <div key={m.label} className="bg-[#0C1626] p-5" title={`Source: ${m.source}`}>
+              <div key={m.label} className="bg-[#0C1626] p-5" title={`Source: ${cite(m.source)}`}>
                 <dd className="text-[1.7rem] font-semibold leading-none tracking-tight"><CountUp value={m.value} /></dd>
                 <dt className="mt-2.5 text-[13px] font-medium text-white/90">{m.label}</dt>
                 {m.context ? <dd className="mt-1 font-mono text-[10.5px] leading-snug text-white/50">{m.context}</dd> : null}
@@ -184,6 +186,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div className="mt-8"><InferenceViewer accent={acc.onDark} /></div>
           </div>
         </section>
+      ) : p.slug === "aecai-inspection-platform" ? (
+        <section className="bg-[#0A1220] py-16 text-white sm:py-20" aria-labelledby="arch-h">
+          <div className="container-page">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: acc.onDark }}>Production architecture</p>
+              <h2 id="arch-h" className="mt-2 max-w-3xl text-[1.8rem] leading-tight sm:text-[2.2rem]">One photo, two GPU workers, one engineer's decision.</h2>
+            </Reveal>
+            <Reveal delay={100}><div className="mt-8"><ArchitectureDiagram dark /></div></Reveal>
+          </div>
+        </section>
       ) : pairs.length ? (
         <section className="bg-[#0A1220] py-16 text-white sm:py-20" aria-labelledby="compare-h">
           <div className="container-page">
@@ -241,12 +253,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <details className="group mt-10 rounded-xl border border-line bg-surface p-5">
           <summary className="cursor-pointer list-none font-medium">
             <span className="eyebrow mr-2" style={{ color: acc.onLight }}>Evidence</span>
-            Source files behind this page
+            Where every figure on this page comes from
             <span aria-hidden className="float-right transition-transform group-open:rotate-45">+</span>
           </summary>
-          <p className="mt-3 text-[14px] text-ink-soft">Paths relative to <span className="font-mono">D:\Mohamed Ragab\</span>:</p>
-          <ul className="mt-2 space-y-1 break-words font-mono text-[12px] text-ink-muted">
-            {p.sources.map((s) => <li key={s}>{s}</li>)}
+          <p className="mt-3 text-[14px] text-ink-soft">Each metric is taken from a primary record, not from a CV. Hover a metric to see its source. The underlying files are available for review at interview.</p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-[13.5px] text-ink-muted">
+            {Array.from(new Set(p.sources.map(cite))).map((s) => <li key={s}>{s}</li>)}
           </ul>
           {p.disclosure ? <p className="mt-4 text-[13px] text-ink-muted">{p.disclosure}</p> : null}
         </details>

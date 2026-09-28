@@ -18,7 +18,7 @@ export default function AboutPage() {
     <>
       <section className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
         <div>
-          <SectionHeading label="About" title="A structural engineer building AI for the problems I met in practice." />
+          <SectionHeading as="h1" label="About" title="A structural engineer building AI for the problems I met in practice." />
           <div className="prose-tight max-w-2xl text-[16.5px] leading-relaxed text-ink-soft">
             <p>
               I trained as a civil engineer in Egypt, graduating with an A+ steel-structures project. I then spent a year at National

@@ -148,3 +148,95 @@ export const programme: { start: number; end: number; bars: Bar[] } = {
     { lane: "AI & digital", label: "AGECS R&D", from: 2026.25, to: NOW, detail: "Drawing understanding and Scan-to-BIM", href: "/projects/structural-drawing-understanding/", row: 1, side: "left" },
   ],
 };
+
+/* ---------------- "Beyond the model" showcase (home) ---------------- */
+export type ShowcaseLane = {
+  key: string;
+  tab: string;
+  title: string;
+  body: string;
+  facts: { value: string; label: string }[];
+  images: { src: string; alt: string; caption: string; width: number; height: number }[];
+  diagram?: boolean;
+  href: string;
+  hrefLabel: string;
+  accent: string; // project slug for colour
+};
+
+export const showcase: ShowcaseLane[] = [
+  {
+    key: "bim",
+    tab: "BIM models & coordination",
+    title: "Federated Revit models, clash-checked in Navisworks.",
+    body: "The Brinell Building (BEN714): architecture, structure and MEP modelled in Revit from 2D PDF drawings, basement to level 7, then federated and clash-checked in Navisworks. Files follow an ISO 19650-style naming convention, and the project was run against EIR and BEP templates.",
+    facts: [
+      { value: "3", label: "Federated discipline models" },
+      { value: "B1–L7", label: "Levels rebuilt from PDF" },
+      { value: "73%", label: "Module mark (BEN714)" },
+    ],
+    images: [
+      { src: "/images/brinell/revit-exterior.webp", alt: "Rendered Revit 3D view of a multi-storey office building with a glazed façade", caption: "Architectural model in Revit.", width: 561, height: 422 },
+      { src: "/images/brinell/structural-frame.webp", alt: "Revit structural model showing the frame of columns, beams and slabs", caption: "Structural model: the frame behind the façade.", width: 561, height: 684 },
+      { src: "/images/brinell/clash.webp", alt: "Navisworks view with a clashing beam highlighted in green against a column in red", caption: "Navisworks clash detection between disciplines.", width: 565, height: 695 },
+    ],
+    href: "/projects/brinell-building-bim/",
+    hrefLabel: "Brinell Building case study",
+    accent: "brinell-building-bim",
+  },
+  {
+    key: "dash",
+    tab: "Dashboards & digital twins",
+    title: "Power BI, with the 3D model inside the report.",
+    body: "For the AECOM × Ulster project, each detected crack is classified against the EN 1992-1-1 width limit and listed with a recommended action beside an embedded 3D Revit view. For the Brinell Building, a Power BI dashboard summarises model quantities next to the 3D model.",
+    facts: [
+      { value: "0.3 mm", label: "EN 1992 w_max used to flag repairs" },
+      { value: "89.69%", label: "Crack classifier accuracy (VGG16)" },
+      { value: "80%", label: "Module mark (BEN715)" },
+    ],
+    images: [
+      { src: "/images/aecom/powerbi-3d.webp", alt: "Power BI report with a 3D tank view, a crack table with maintenance recommendations and a gauge", caption: "Crack register beside the 3D Revit model of the tank.", width: 1485, height: 702 },
+      { src: "/images/brinell/powerbi.webp", alt: "Power BI dashboard with floor and door area totals, a 3D building model and element tables", caption: "Model-quantity dashboard for the Brinell Building.", width: 1600, height: 848 },
+      { src: "/images/aecom/live-table.webp", alt: "Crack register with crack type, image, suggested maintenance and width", caption: "Width class and recommended action for every crack.", width: 642, height: 595 },
+    ],
+    href: "/projects/water-tank-digital-twin/",
+    hrefLabel: "Water tank digital twin case study",
+    accent: "water-tank-digital-twin",
+  },
+  {
+    key: "auto",
+    tab: "Automation",
+    title: "Scripts and rules that remove the repetitive steps.",
+    body: "Dynamo graphs with Python nodes inside Revit, and rule-based geometry in Python. On the AECOM project a Dynamo script linked detected crack data to the Revit model. In Scan-to-BIM, my geometry rules (density contours, PCA, connected components) classify walls and columns and reject temporary works before anything is written to IFC.",
+    facts: [
+      { value: "Dynamo", label: "+ Python nodes in Revit" },
+      { value: "18.5 min", label: "Scan-to-IFC regeneration, end to end" },
+      { value: "IfcOpenShell", label: "Independent re-check of the IFC output" },
+    ],
+    images: [
+      { src: "/images/brinell/dynamo.webp", alt: "Dynamo graph in Revit with connected nodes and a Python script editor", caption: "Dynamo graph with a Python script node.", width: 879, height: 469 },
+      { src: "/images/scan/site-structural-plan.webp", alt: "Building footprint plan with automatically labelled wall and column candidates", caption: "Contractor scan: walls and columns classified automatically (coordinates removed).", width: 1300, height: 1357 },
+      { src: "/images/scan/kladno-slab-classification.webp", alt: "Plot of slab-candidate classification for one level of a station scan", caption: "Public Kladno benchmark: rule-based slab classification.", width: 732, height: 759 },
+    ],
+    href: "/projects/scan-to-bim/",
+    hrefLabel: "Scan-to-BIM case study",
+    accent: "scan-to-bim",
+  },
+  {
+    key: "prod",
+    tab: "Production & cloud",
+    title: "From notebook to a deployed product.",
+    body: "AECAI runs its defect models as serverless GPU workers behind a Next.js console. Each inspection photo goes to the crack worker and the spalling-and-rebar worker in parallel, and findings come back with geometry and confidence for an engineer to review.",
+    facts: [
+      { value: "2", label: "Models in parallel per photo" },
+      { value: "0 → 1", label: "GPU workers scale from zero on demand" },
+      { value: "Every push", label: "Auto-deploys app and workers" },
+    ],
+    images: [
+      { src: "/images/aecai/photos-cv.webp", alt: "AECAI console showing a grid of inspection photos tagged with detected defects", caption: "Inspection photos tagged with detected defects (identifiers blurred).", width: 1600, height: 774 },
+    ],
+    diagram: true,
+    href: "/projects/aecai-inspection-platform/",
+    hrefLabel: "AECAI case study",
+    accent: "aecai-inspection-platform",
+  },
+];

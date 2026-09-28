@@ -13,7 +13,7 @@ export default function ResearchPage() {
   return (
     <>
       <section className="container-page py-16 sm:py-20">
-        <SectionHeading label="Research" title="MSc dissertation" intro={dissertation.abstract} />
+        <SectionHeading as="h1" label="Research" title="MSc dissertation" intro={dissertation.abstract} />
         <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
           <div className="card p-6 sm:p-8">
             <p className="eyebrow text-accent">{dissertation.submitted}</p>
