@@ -14,6 +14,7 @@ import StepExplorer from "@/components/StepExplorer";
 import CompareSlider from "@/components/CompareSlider";
 import InferenceViewer from "@/components/InferenceViewer";
 import ArchitectureDiagram from "@/components/ArchitectureDiagram";
+import CadVisual from "@/components/cad/CadVisual";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -174,6 +175,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           {p.tools.map((t) => <span key={t} className="chip">{t}</span>)}
         </div>
       </Chapter>
+
+      {p.slug === "structural-drawing-understanding" ? (
+        <section className="relative bg-[#08101D] py-16 text-white sm:py-20" aria-labelledby="cad-h">
+          <div className="container-page">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em]" style={{ color: acc.onDark }}>CAD-to-BIM</p>
+              <h2 id="cad-h" className="mt-2 max-w-3xl text-[1.8rem] leading-tight sm:text-[2.2rem]">Three plans in, one 3D model out.</h2>
+              <p className="mt-3 max-w-2xl text-[15px] text-white/70">The AI reads the foundation, level 1 and roof plans, detects each structural element, and the detections are built level by level on top of the plans.</p>
+            </Reveal>
+            <div className="relative mt-8 h-[470px] sm:h-[540px] lg:h-[620px]"><CadVisual /></div>
+          </div>
+        </section>
+      ) : null}
 
       {/* full-width visual moment: input → output */}
       {p.slug === "concrete-defect-detection" && industryOk ? (

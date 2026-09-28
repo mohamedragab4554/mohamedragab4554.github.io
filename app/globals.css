@@ -3,13 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --paper: #f7f7f4;
-  --ink: #101418;
-  --viz-1: #00908c; /* teal   – validated categorical slot 1 */
-  --viz-2: #2a4fa8; /* navy-blue – slot 2 */
-  --viz-3: #eb6834; /* orange – slot 3 */
-  --viz-grid: #e6e7e2;
-  --viz-axis: #5e6873;
+  color-scheme: dark;
+  --paper: #070d18;
+  --ink: #e8f0f6;
+  --viz-1: #14a39e; /* teal   – validated categorical slot 1 (dark) */
+  --viz-2: #6f86e8; /* blue   – slot 2 (dark) */
+  --viz-3: #d95926; /* orange – slot 3 (dark) */
+  --viz-grid: #1c2a40;
+  --viz-axis: #8c9cad;
+  --viz-label: #b4c2cf;
+  --viz-axisline: #34465f;
+  --viz-ref: #e8f0f6;
 }
 
 html { scroll-behavior: smooth; }
@@ -24,9 +28,9 @@ h1 { font-weight: 640; letter-spacing: -0.025em; }
 h2 { font-weight: 620; letter-spacing: -0.02em; }
 h3 { font-weight: 600; letter-spacing: -0.01em; }
 
-::selection { background: #cfe9e7; }
+::selection { background: #1d4a52; color: #fff; }
 
-:focus-visible { outline: 2px solid #0b6e6b; outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid #5fd3cd; outline-offset: 3px; border-radius: 4px; }
 
 .blueprint {
   background-color: #0e1b2c;
@@ -40,10 +44,34 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
 }
 .paper-grid {
   background-image:
-    linear-gradient(rgba(16, 20, 24, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 20, 24, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(95, 211, 205, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 211, 205, 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
+/* AI-lab field: dot matrix with soft signal glows */
+.ai-bg {
+  background-color: #070d18;
+  background-image:
+    radial-gradient(60% 50% at 8% 0%, rgba(95, 211, 205, 0.07), transparent 70%),
+    radial-gradient(50% 45% at 100% 30%, rgba(142, 166, 245, 0.06), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.2px);
+  background-size: auto, auto, 22px 22px;
+}
+.ai-bg-2 {
+  background-color: #0a1322;
+  background-image:
+    radial-gradient(55% 60% at 95% 0%, rgba(95, 211, 205, 0.06), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1.2px);
+  background-size: auto, 22px 22px;
+}
+/* signal hairline between sections */
+.signal-top { position: relative; }
+.signal-top::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(95, 211, 205, 0.45) 30%, rgba(142, 166, 245, 0.35) 70%, transparent); }
+.pulse-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #5fd3cd; box-shadow: 0 0 0 0 rgba(95, 211, 205, .6); animation: pulse 2.4s ease-out infinite; vertical-align: middle; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(95, 211, 205, .55); } 70% { box-shadow: 0 0 0 8px rgba(95, 211, 205, 0); } 100% { box-shadow: 0 0 0 0 rgba(95, 211, 205, 0); } }
+.glow-line { height: 1px; background: linear-gradient(90deg, #5fd3cd, rgba(142, 166, 245, .6) 60%, transparent); }
+.text-signal { background: linear-gradient(92deg, #ffffff 0%, #cfeeec 45%, #5fd3cd 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* dimension-line divider used under section labels */
 .dimline { position: relative; height: 9px; }
@@ -57,10 +85,11 @@ h3 { font-weight: 600; letter-spacing: -0.01em; }
   .container-page { @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8; }
   .eyebrow { @apply font-mono text-[11px] uppercase tracking-[0.14em]; }
   .btn { @apply inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors; }
-  .btn-primary { @apply btn bg-accent text-white hover:bg-[#095c59]; }
+  .btn-primary { @apply btn bg-accent font-semibold text-[#06121F] hover:bg-[#8BE3DE]; }
   .btn-ghost-dark { @apply btn border border-white/25 text-white hover:bg-white/10; }
-  .btn-ghost { @apply btn border border-line bg-surface text-ink hover:border-ink/30; }
-  .card { @apply rounded-xl border border-line bg-surface shadow-card; }
+  .btn-ghost { @apply btn border border-line bg-surface/60 text-ink backdrop-blur hover:border-accent/50 hover:shadow-glow; }
+  .card { @apply rounded-xl border border-line bg-surface/80 shadow-card backdrop-blur-sm transition-[border-color,box-shadow] duration-300; }
+  .card-hover { @apply hover:border-accent/40 hover:shadow-glow; }
   .chip { @apply inline-flex items-center rounded-full border border-line bg-paper px-2.5 py-1 font-mono text-[11px] text-ink-soft; }
 }
 
@@ -101,7 +130,7 @@ html[data-motion="ok"] .boot-line { opacity: 0; animation: boot .5s ease forward
 .hv.ready .hv-still{opacity:0}
 .hv:not(.ready) .hv-replay,.hv:not(.ready) .hv-hint{visibility:hidden}
 .hv-static .hv-hud,.hv-static .hv-bar{display:none}
-.hv-note{position:absolute;right:14px;top:10px;margin:0;max-width:15rem;text-align:right;font-size:10px;line-height:1.35;color:rgba(255,255,255,.42);pointer-events:none}
+.hv-note{position:absolute;right:14px;top:10px;margin:0;max-width:15rem;text-align:right;font-size:10px;line-height:1.35;color:rgba(255,255,255,.58);pointer-events:none}
 .hv-hud{position:absolute;left:14px;top:12px;width:min(310px,60%);padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(12,22,38,.82);backdrop-filter:blur(6px);font-size:11px;line-height:1.45;color:rgba(255,255,255,.76);pointer-events:none}
 .hv-ttl{display:flex;justify-content:space-between;gap:8px;color:#fff;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:10.5px}
 .hv-ttl i{font-style:normal;color:#F0A35E}
@@ -156,3 +185,6 @@ html[data-motion="ok"] .boot-line { opacity: 0; animation: boot .5s ease forward
 }
 .hv-capture .hv-hud,.hv-capture .hv-bar,.hv-capture .hv-note,.hv-capture .hv-tip{display:none!important}
 @media (prefers-reduced-motion:reduce){.hv-gl,.hv-still,.hv-lbl,.hv-hud li{transition:none}.hv-nn line{animation:none!important}}
+.hv-plan{position:absolute;left:0;top:0;transform:translate(0,-120%);white-space:nowrap;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(169,191,212,.85);pointer-events:none}
+.hv-hud ul li{white-space:nowrap}
+@media (max-width:519px){.hv-plan{font-size:8.5px}}

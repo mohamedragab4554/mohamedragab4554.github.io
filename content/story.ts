@@ -7,12 +7,12 @@
 export type Accent = { onDark: string; onLight: string; tint: string; name: string };
 
 export const accents: Record<string, Accent> = {
-  "concrete-defect-detection": { name: "Crack", onDark: "#F0A35E", onLight: "#A5521B", tint: "#FBEBDD" },
-  "aecai-inspection-platform": { name: "Product", onDark: "#5FD3CD", onLight: "#0B6E6B", tint: "#DDF1EF" },
-  "structural-drawing-understanding": { name: "Blueprint", onDark: "#8EA6F5", onLight: "#3050B4", tint: "#E3E9FB" },
-  "scan-to-bim": { name: "Point cloud", onDark: "#B9A6F6", onLight: "#5B43C0", tint: "#ECE7FC" },
-  "water-tank-digital-twin": { name: "Asset", onDark: "#6CC0EC", onLight: "#1A6798", tint: "#DFF0FA" },
-  "brinell-building-bim": { name: "BIM", onDark: "#E0C36A", onLight: "#7A5C0A", tint: "#F6EFD6" },
+  "concrete-defect-detection": { name: "Crack", onDark: "#F0A35E", onLight: "#F0A35E", tint: "#231A14" },
+  "aecai-inspection-platform": { name: "Product", onDark: "#5FD3CD", onLight: "#5FD3CD", tint: "#0F2328" },
+  "structural-drawing-understanding": { name: "Blueprint", onDark: "#8EA6F5", onLight: "#8EA6F5", tint: "#141C33" },
+  "scan-to-bim": { name: "Point cloud", onDark: "#B9A6F6", onLight: "#B9A6F6", tint: "#1A1830" },
+  "water-tank-digital-twin": { name: "Asset", onDark: "#6CC0EC", onLight: "#6CC0EC", tint: "#0F2030" },
+  "brinell-building-bim": { name: "BIM", onDark: "#E0C36A", onLight: "#E0C36A", tint: "#221E12" },
 };
 
 export type InputItem = { label: string; detail: string };
@@ -145,7 +145,7 @@ export const programme: { start: number; end: number; bars: Bar[] } = {
     { lane: "AI & digital", label: "AECOM × Ulster", side: "left", row: 1, from: 2025.1, to: 2025.4, detail: "Crack detection → Revit → Power BI · 80%", href: "/projects/water-tank-digital-twin/" },
     { lane: "AI & digital", label: "Dissertation", side: "left", row: 2, from: 2025.4, to: 2025.7, detail: "YOLO vs U-Net multi-defect detection, field validated", href: "/projects/concrete-defect-detection/" },
     { lane: "AI & digital", label: "AECAI · CTO", side: "left", row: 0, from: 2025.92, to: NOW, detail: "Inspection AI platform, model to product", href: "/projects/aecai-inspection-platform/" },
-    { lane: "AI & digital", label: "AGECS R&D", from: 2026.25, to: NOW, detail: "Drawing understanding and Scan-to-BIM", href: "/projects/structural-drawing-understanding/", row: 1, side: "left" },
+    { lane: "AI & digital", label: "AGECS R&D", from: 2026.25, to: NOW, detail: "CAD-to-BIM drawing AI and Scan-to-BIM", href: "/projects/structural-drawing-understanding/", row: 1, side: "left" },
   ],
 };
 

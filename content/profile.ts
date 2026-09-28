@@ -6,9 +6,9 @@ export const profile = {
   name: "Mohamed Ragab",
   title: "AI & Digital Construction Engineer",
   discipline: "Structural engineering · BIM · Computer vision",
-  headline: "Where structural engineering meets AI and BIM.",
+  headline: "Training AI to read the built environment.",
   intro:
-    "I am a structural engineer and computer-vision researcher. I build AI, BIM and automation workflows that turn site photos, structural drawings and laser scans into data an engineer can check and sign off.",
+    "I am a structural engineer who builds AI. I train computer-vision and point-cloud models on site photos, structural drawings and laser scans, process the data behind them, and deploy them through cloud pipelines into BIM models and digital twins that engineers can check and sign off.",
   roles: [
     "AI / Computer Vision Engineer",
     "Digital Construction & BIM",
@@ -63,25 +63,39 @@ export const proofStrip = [
 
 export const pillars = [
   {
-    title: "Computer vision for inspection",
-    body: "I build detection and segmentation models for concrete defects: cracks, spalling, exposed rebar and 18-class bridge deterioration. I validate them on noisy site imagery, not only on curated benchmarks.",
-    tags: ["YOLOv8/11-seg", "U-Net", "FPN", "PyTorch"],
+    title: "Computer vision & deep learning",
+    body: "Detection and segmentation models for concrete defects and structural drawings: cracks, spalling, exposed rebar, 18-class bridge deterioration, and columns, beams, walls, openings and piles on plans. Validated on noisy site data, not only on benchmarks.",
+    tags: ["YOLOv8/11-seg", "U-Net", "FPN", "PointNet++", "PyTorch"],
     href: "/projects/concrete-defect-detection/",
     hrefLabel: "Evidence: dissertation",
   },
   {
-    title: "Drawing & document intelligence",
-    body: "I turn structural plans into structured elements: columns, beams, walls, openings and piles. The work combines tiled instance segmentation, geometry-aware post-processing and dataset engineering at scale.",
-    tags: ["Instance segmentation", "Tiled inference & TTA", "COCO/YOLO", "CVAT"],
+    title: "ML engineering & data processing",
+    body: "I build the datasets as well as the models: format converters, tiling, annotation QA and hash-verified copies, and pipelines that process a 264 M-point scan or hundreds of site photos in one run.",
+    tags: ["pandas · NumPy", "Open3D", "OpenCV", "COCO / YOLO", "CVAT"],
     href: "/projects/structural-drawing-understanding/",
-    hrefLabel: "Evidence: drawing AI",
+    hrefLabel: "Evidence: CAD-to-BIM AI",
   },
   {
-    title: "BIM, Scan-to-BIM & digital twins",
-    body: "I build federated Revit models, run clash coordination and connect Power BI to the models. I also reconstruct IFC models from point clouds with a human-in-the-loop review step.",
-    tags: ["Revit", "Navisworks", "IFC / IfcOpenShell", "Open3D"],
-    href: "/projects/brinell-building-bim/",
-    hrefLabel: "Evidence: BIM project",
+    title: "Cloud & MLOps",
+    body: "Models served as serverless GPU workers behind a web product, with versioned weights, a cloud database and push-to-deploy for both the app and the workers.",
+    tags: ["RunPod", "Supabase", "Vercel", "Hugging Face", "GitHub Actions"],
+    href: "/projects/aecai-inspection-platform/",
+    hrefLabel: "Evidence: AECAI platform",
+  },
+  {
+    title: "BIM, digital twins & BIM Level 3",
+    body: "Federated Revit models and clash coordination under ISO 19650, Power BI twins that carry live condition data, and Scan-to-BIM that writes open IFC: the building blocks of BIM Level 3.",
+    tags: ["Revit", "Navisworks", "IFC / IfcOpenShell", "Power BI", "ISO 19650"],
+    href: "/#twin",
+    hrefLabel: "Evidence: digital twins",
+  },
+  {
+    title: "Generative AI & agentic workflows",
+    body: "I evaluate multimodal LLMs on engineering drawings and document their failure modes, integrate them into products (an optional Claude or Gemini scan in AECAI), and build with AI coding agents under engineering review.",
+    tags: ["Multimodal LLMs", "VLM evaluation", "Claude Code", "Codex", "Kimi"],
+    href: "/projects/aecai-inspection-platform/",
+    hrefLabel: "Evidence: AECAI platform",
   },
   {
     title: "Structural engineering judgement",

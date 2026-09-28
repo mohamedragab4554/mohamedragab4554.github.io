@@ -109,7 +109,7 @@ function GroupedBar({ c }: { c: Extract<Chart, { kind: "grouped-bar" }> }) {
                 return (
                   <g key={s.name}>
                     <path d={d} fill={COLORS[si]} className="bar-v" style={{ transitionDelay: `${ci * 90 + si * 40}ms` }} />
-                    <text x={x + bw / 2} y={top - 5} textAnchor="middle" fontSize={9.5} fill="#3b4450" className="font-mono">{fmt(v, c.format)}</text>
+                    <text x={x + bw / 2} y={top - 5} textAnchor="middle" fontSize={9.5} fill="var(--viz-label)" className="font-mono">{fmt(v, c.format)}</text>
                     <rect
                       x={x - 3} y={T} width={bw + 6} height={ph} fill="transparent"
                       onMouseEnter={() => setTip({ xPct: ((x + bw / 2) / W) * 100, yPct: (top / H) * 100, lines: [cat, `${s.name}: ${fmt(v, c.format)}`] })}
@@ -119,11 +119,11 @@ function GroupedBar({ c }: { c: Extract<Chart, { kind: "grouped-bar" }> }) {
                   </g>
                 );
               })}
-              <text x={L + ci * band + band / 2} y={H - 12} textAnchor="middle" fontSize={12} fill="#3b4450">{cat}</text>
+              <text x={L + ci * band + band / 2} y={H - 12} textAnchor="middle" fontSize={12} fill="var(--viz-label)">{cat}</text>
             </g>
           );
         })}
-        <line x1={L} x2={W - R} y1={T + ph} y2={T + ph} stroke="#c9cbc4" strokeWidth={1} />
+        <line x1={L} x2={W - R} y1={T + ph} y2={T + ph} stroke="var(--viz-axisline)" strokeWidth={1} />
       </svg>
       <Tooltip tip={tip} />
       <Legend names={c.series.map((s) => s.name)} />
@@ -156,7 +156,7 @@ function HBar({ c }: { c: Extract<Chart, { kind: "hbar" }> }) {
           const y0 = T + ci * rowH + 5;
           return (
             <g key={cat}>
-              <text x={L - 10} y={y0 + (n * bh + (n - 1) * 2) / 2 + 4} textAnchor="end" fontSize={12} fill="#3b4450">{cat}</text>
+              <text x={L - 10} y={y0 + (n * bh + (n - 1) * 2) / 2 + 4} textAnchor="end" fontSize={12} fill="var(--viz-label)">{cat}</text>
               {c.series.map((s, si) => {
                 const v = s.values[ci];
                 const yy = y0 + si * (bh + 2);
@@ -167,7 +167,7 @@ function HBar({ c }: { c: Extract<Chart, { kind: "hbar" }> }) {
                   <g key={s.name}>
                     <path d={d} fill={COLORS[si]} opacity={si === 0 ? 1 : 0.85} className="bar-h" style={{ transitionDelay: `${ci * 45}ms` }} />
                     {si === 0 || n === 1 ? (
-                      <text x={L + w + 6} y={yy + bh - 1} fontSize={10.5} fill="#3b4450" className="font-mono">{fmt(v, c.format)}</text>
+                      <text x={L + w + 6} y={yy + bh - 1} fontSize={10.5} fill="var(--viz-label)" className="font-mono">{fmt(v, c.format)}</text>
                     ) : null}
                     <rect
                       x={L} y={yy - 1} width={pw} height={bh + 2} fill="transparent"
@@ -183,11 +183,11 @@ function HBar({ c }: { c: Extract<Chart, { kind: "hbar" }> }) {
         })}
         {c.reference ? (
           <g>
-            <line x1={x(c.reference.value)} x2={x(c.reference.value)} y1={T} y2={H - B} stroke="#101418" strokeWidth={1} opacity={0.55} />
-            <text x={x(c.reference.value) - 4} y={H - B - 5} textAnchor="end" fontSize={10.5} fill="#101418" className="font-mono">{c.reference.label}</text>
+            <line x1={x(c.reference.value)} x2={x(c.reference.value)} y1={T} y2={H - B} stroke="var(--viz-ref)" strokeWidth={1} opacity={0.55} />
+            <text x={x(c.reference.value) - 4} y={H - B - 5} textAnchor="end" fontSize={10.5} fill="var(--viz-ref)" className="font-mono">{c.reference.label}</text>
           </g>
         ) : null}
-        <line x1={L} x2={L} y1={T} y2={H - B} stroke="#c9cbc4" strokeWidth={1} />
+        <line x1={L} x2={L} y1={T} y2={H - B} stroke="var(--viz-axisline)" strokeWidth={1} />
       </svg>
       <Tooltip tip={tip} />
       <Legend names={c.series.map((s) => s.name)} />
@@ -225,11 +225,11 @@ function Line({ c }: { c: Extract<Chart, { kind: "line" }> }) {
         <text x={L + pw / 2} y={H - 1} textAnchor="middle" fontSize={11} fill="var(--viz-axis)">{c.xLabel}</text>
         {c.highlight ? (
           <g>
-            <line x1={x(c.highlight.x)} x2={x(c.highlight.x)} y1={T} y2={T + ph} stroke="#101418" opacity={0.25} strokeWidth={1} />
-            <text x={x(c.highlight.x)} y={T + ph - 6} textAnchor="middle" fontSize={10.5} fill="#3b4450" className="font-mono">{c.highlight.label}</text>
+            <line x1={x(c.highlight.x)} x2={x(c.highlight.x)} y1={T} y2={T + ph} stroke="var(--viz-ref)" opacity={0.25} strokeWidth={1} />
+            <text x={x(c.highlight.x)} y={T + ph - 6} textAnchor="middle" fontSize={10.5} fill="var(--viz-label)" className="font-mono">{c.highlight.label}</text>
           </g>
         ) : null}
-        {hover !== null ? <line x1={x(xs[hover])} x2={x(xs[hover])} y1={T} y2={T + ph} stroke="#101418" opacity={0.35} strokeWidth={1} /> : null}
+        {hover !== null ? <line x1={x(xs[hover])} x2={x(xs[hover])} y1={T} y2={T + ph} stroke="var(--viz-ref)" opacity={0.35} strokeWidth={1} /> : null}
         {c.series.map((s, si) => {
           const d = s.values.map((v, i) => `${i ? "L" : "M"}${x(xs[i]).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
           const last = s.values.length - 1;
@@ -237,7 +237,7 @@ function Line({ c }: { c: Extract<Chart, { kind: "line" }> }) {
             <g key={s.name}>
               <path d={d} fill="none" stroke={COLORS[si]} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" pathLength={1} className="line-draw" style={{ transitionDelay: `${si * 200}ms` }} />
               <circle cx={x(xs[last])} cy={y(s.values[last])} r={4} fill={COLORS[si]} stroke="#fff" strokeWidth={2} />
-              <text x={x(xs[last]) + 8} y={y(s.values[last]) + (si === 0 ? -4 : 12)} fontSize={11} fill="#3b4450">{s.name}</text>
+              <text x={x(xs[last]) + 8} y={y(s.values[last]) + (si === 0 ? -4 : 12)} fontSize={11} fill="var(--viz-label)">{s.name}</text>
               {hover !== null ? <circle cx={x(xs[hover])} cy={y(s.values[hover])} r={4} fill={COLORS[si]} stroke="#fff" strokeWidth={2} /> : null}
             </g>
           );
@@ -247,7 +247,7 @@ function Line({ c }: { c: Extract<Chart, { kind: "line" }> }) {
             <title>{`${c.xLabel} ${v} · ` + c.series.map((s) => `${s.name}: ${fmt(s.values[i], c.format)}`).join(" · ")}</title>
           </rect>
         ))}
-        <line x1={L} x2={W - R} y1={T + ph} y2={T + ph} stroke="#c9cbc4" strokeWidth={1} />
+        <line x1={L} x2={W - R} y1={T + ph} y2={T + ph} stroke="var(--viz-axisline)" strokeWidth={1} />
       </svg>
       <Tooltip tip={tip} />
       <Legend names={c.series.map((s) => s.name)} />
@@ -260,7 +260,7 @@ export default function ChartBlock({ chart }: { chart: Chart }) {
   return (
     <figure ref={ref} className={`viz card min-w-0 p-5 sm:p-6 ${inView ? "viz-in" : ""}`}>
       <figcaption>
-        <h4 className="text-[15px] font-semibold text-ink">{chart.title}</h4>
+        <h3 className="text-[15px] font-semibold text-ink">{chart.title}</h3>
         {chart.subtitle ? <p className="mt-1 text-[13px] text-ink-muted">{chart.subtitle}</p> : null}
       </figcaption>
       <div className="-mx-1 mt-4 overflow-x-auto px-1 [&>div]:min-w-[540px]">

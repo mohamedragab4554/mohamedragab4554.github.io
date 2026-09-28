@@ -10,6 +10,9 @@ This is an interactive portfolio for a structural engineer who works in computer
 |---|---|
 | WebGL hero: a simulated laser scan of a concrete frame is fed to a trained AI model, which classifies every point (AI classify), detects each element and rejects temporary shoring (AI detect), then IFC solids grow from the points (BIM model). Drag to rotate, hover an element for its IFC class and the scan points it was recognised from, click a stage to jump. | `components/hero/scan.ts` (scene), `HeroScene.ts` (WebGL), `HeroVisual.tsx` |
 | Instant first frame: a server-rendered still of the same view paints before any JavaScript, then the 3D cross-fades in. Low-power or no-WebGL devices keep a labelled still of the finished model; reduced motion opens on the finished model. Regenerate the stills in `public/images/hero/` if you change the scene or camera. | `public/images/hero/*.webp` |
+| CAD-to-BIM AI visual: three stacked structural plans (foundation, level 1, roof) drawn with CAD conventions; the AI sweeps each plan and detects piles, columns, circular columns, beams, walls and openings; the stack settles to storey height and the model builds level by level on the plans (~4.5 s). Loads when scrolled near; stills in `public/images/cad/`. | `components/cad/*` |
+| AI lifecycle pipeline (data → training → evaluation → cloud → BIM/digital twin) and the Digital twins & BIM Level 3 section. | `components/Lifecycle.tsx`, `content/ai.ts` |
+| Dark "AI lab" theme: tokens in `tailwind.config.ts`, backgrounds and glow utilities (`ai-bg`, `signal-top`, `pulse-dot`, `text-signal`) in `app/globals.css`. | |
 | Systems map: inputs → methods → outcomes, traceable per project | `components/SystemsMap.tsx` |
 | Inference viewer: the same real site photo through YOLO11x-seg, U-Net and FPN, with a drag comparison | `components/InferenceViewer.tsx` |
 | Before/after sliders using real inputs and outputs (drawings, point cloud, crack masks) | `components/CompareSlider.tsx` |
@@ -60,6 +63,7 @@ All text and numbers live in `content/`. You rarely need to edit components.
 | `content/story.ts` | Project accent colours, input-data cards, before/after pairs, inference-viewer images, systems map, programme timeline, and the home-page "Beyond the model" showcase (`showcase`) |
 | `content/experience.ts` | Roles and grouped skills |
 | `content/research.ts` | Dissertation, education, certifications |
+| `content/ai.ts` | AI lifecycle stages and headline stats, BIM Level 3 building blocks, digital-twin loop |
 
 - **Edit text or a metric:** change the value in `content/`, commit and push. The site redeploys in about 2 minutes.
 - **Add a project:** copy an object in `projects.ts` and give it a new `slug`. Then add its accent, inputs and optional comparison in `story.ts`, and put images in `public/images/<slug>/`. The page `/projects/<slug>/` is generated automatically.

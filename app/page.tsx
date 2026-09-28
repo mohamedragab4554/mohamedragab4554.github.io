@@ -14,6 +14,9 @@ import InferenceViewer from "@/components/InferenceViewer";
 import WorkCard from "@/components/WorkCard";
 import Programme from "@/components/Programme";
 import Showcase from "@/components/Showcase";
+import CadVisual from "@/components/cad/CadVisual";
+import Lifecycle from "@/components/Lifecycle";
+import { aiStats, level3, twinLoop } from "@/content/ai";
 
 export default function Home() {
   const field = projects[0].charts[1];
@@ -66,8 +69,52 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------- CAD-TO-BIM AI ---------- */}
+      <section id="cad" className="signal-top scroll-mt-16 overflow-hidden bg-[#08101D] py-20 text-white sm:py-24" aria-labelledby="cad-title">
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_80%_50%,rgba(142,166,245,0.10),transparent_70%)]" />
+        <div className="container-page relative grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:items-center">
+          <Reveal>
+            <SectionHeading id="cad-title" dark label="CAD-to-BIM AI" title="From 2D structural plans to a 3D model." intro="A trained segmentation model reads each plan and finds every pile, column, beam, wall and opening. The detections become structured element data, built level by level into BIM." />
+            <dl className="grid grid-cols-2 gap-3">
+              {[["0.941", "Column mAP50", "P 0.944 · R 0.935"], ["0.902", "8-class val mAP50", "box · mask 0.893"], ["21,009", "Training tiles", "six public sources"], ["8", "Element classes", "incl. piles & openings"]].map(([v, l, c]) => (
+                <div key={l} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                  <dd className="text-[1.6rem] font-semibold leading-none"><CountUp value={v} /></dd>
+                  <dt className="mt-2 text-[13px] text-white/85">{l}</dt>
+                  <dd className="mt-0.5 font-mono text-[10.5px] text-white/50">{c}</dd>
+                </div>
+              ))}
+            </dl>
+            <Link href="/projects/structural-drawing-understanding/" className="mt-6 inline-flex text-[14px] font-medium text-[#8EA6F5] hover:underline">Read the CAD-to-BIM case study →</Link>
+          </Reveal>
+          <div className="relative -mx-4 h-[470px] sm:mx-0 sm:h-[520px] lg:-mr-10 lg:h-[600px]">
+            <CadVisual />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- AI LIFECYCLE ---------- */}
+      <section id="ai" className="signal-top ai-bg scroll-mt-16 py-20 sm:py-24" aria-labelledby="ai-title">
+        <div className="container-page">
+          <Reveal>
+            <SectionHeading id="ai-title" label="AI lifecycle" title="From raw site data to deployed models." intro="Most of the work in construction AI happens before and after the model. I run the whole loop: engineering the data, training and testing the models, deploying them in the cloud, and wiring the results into BIM and digital twins." />
+          </Reveal>
+          <Reveal delay={60}>
+            <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+              {aiStats.map((a) => (
+                <div key={a.label} className="card p-5" title={a.detail}>
+                  <dd className="text-signal text-[2rem] font-semibold leading-none"><CountUp value={a.value} /></dd>
+                  <dt className="mt-3 text-[13.5px] font-medium text-ink">{a.label}</dt>
+                  <dd className="mt-1 font-mono text-[10.5px] leading-snug text-ink-muted">{a.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal delay={100}><div className="mt-10"><Lifecycle /></div></Reveal>
+        </div>
+      </section>
+
       {/* ---------- SYSTEMS MAP ---------- */}
-      <section id="systems" className="scroll-mt-16 border-t border-white/[0.06] bg-[#0C1626] py-20 text-white sm:py-24" aria-labelledby="systems-title">
+      <section id="systems" className="signal-top scroll-mt-16 bg-[#0B1424] py-20 text-white sm:py-24" aria-labelledby="systems-title">
         <div className="container-page">
           <Reveal>
             <SectionHeading id="systems-title" dark label="Systems map" title="From engineering data to decisions an engineer can sign off." intro="Four kinds of input, four method families, four outcomes. Pick a project, or hover a step, to trace the route it takes." />
@@ -78,7 +125,7 @@ export default function Home() {
 
       {/* ---------- INFERENCE VIEWER ---------- */}
       {profile.useIndustryPhotos ? (
-        <section className="border-t border-white/[0.06] bg-[#0A1220] py-20 text-white sm:py-24" aria-labelledby="viewer-title">
+        <section className="signal-top bg-[#08101D] py-20 text-white sm:py-24" aria-labelledby="viewer-title">
           <div className="container-page">
             <Reveal>
               <SectionHeading id="viewer-title" dark label="Live evidence" title="Three models, one real site photo." intro="On the curated benchmark these detectors scored within 0.02 mAP50 of each other. On site they behave very differently. Switch models and drag the divider." />
@@ -88,18 +135,51 @@ export default function Home() {
         </section>
       ) : null}
 
-      {/* ---------- BEYOND THE MODEL ---------- */}
-      <section id="beyond" className="scroll-mt-16 border-t border-line bg-surface/70 py-20 sm:py-24" aria-labelledby="beyond-title">
+      {/* ---------- DIGITAL TWINS & BIM LEVEL 3 ---------- */}
+      <section id="twin" className="signal-top ai-bg scroll-mt-16 py-20 sm:py-24" aria-labelledby="twin-title">
         <div className="container-page">
           <Reveal>
-            <SectionHeading id="beyond-title" label="Beyond the model" title="BIM, dashboards, automation and deployment." intro="A detector on its own changes nothing on site. These are the parts that put results in front of engineers and asset owners, all taken from my own project files." />
+            <SectionHeading id="twin-title" label="Digital twins & BIM Level 3" title="From federated files to live, connected models." intro="BIM Level 2 is coordinated files under ISO 19650. Level 3 is one open, cloud-connected model that live data flows into. My Brinell project was a full BIM Level 2 delivery, my MSc covered BIM Levels 2 and 3 and digital-twin workflows, and these are the Level 3 building blocks I already build." />
+          </Reveal>
+          <Reveal delay={60}>
+            <ol className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em]" aria-label="Digital twin loop">
+              {twinLoop.map((n, i) => (
+                <li key={n} className="flex items-center gap-2">
+                  <span className="rounded-full border border-accent/40 bg-accent/[0.08] px-3 py-1.5 text-accent">{n}</span>
+                  <span aria-hidden className="text-ink-muted">{i < twinLoop.length - 1 ? "→" : "↺ next inspection"}</span>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {level3.map((b, i) => (
+              <Reveal key={b.k} delay={i * 70} className="h-full">
+                <Link href={b.href} className="card card-hover group flex h-full flex-col p-5">
+                  <span aria-hidden className="h-[2px] w-10" style={{ background: b.accent, boxShadow: `0 0 12px ${b.accent}` }} />
+                  <p className="mt-4 font-mono text-[10.5px] uppercase tracking-[0.14em]" style={{ color: b.accent }}>{b.k}</p>
+                  <h3 className="mt-1.5 text-[16.5px] leading-snug">{b.title}</h3>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-ink-soft">{b.body}</p>
+                  <p className="mt-auto pt-4 font-mono text-[11px] text-ink-muted">{b.proof}</p>
+                  <span className="mt-3 text-[12.5px] font-medium" style={{ color: b.accent }}>{b.hrefLabel} →</span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- BEYOND THE MODEL ---------- */}
+      <section id="beyond" className="signal-top ai-bg-2 scroll-mt-16 py-20 sm:py-24" aria-labelledby="beyond-title">
+        <div className="container-page">
+          <Reveal>
+            <SectionHeading id="beyond-title" label="Beyond the model" title="BIM, digital twins, automation and cloud." intro="A detector on its own changes nothing on site. These are the parts that put results in front of engineers and asset owners, all taken from my own project files." />
           </Reveal>
           <Reveal delay={100}><Showcase /></Reveal>
         </div>
       </section>
 
       {/* ---------- SELECTED WORK ---------- */}
-      <section id="work" className="scroll-mt-16 bg-paper py-20 sm:py-24" aria-labelledby="work-title">
+      <section id="work" className="signal-top ai-bg scroll-mt-16 py-20 sm:py-24" aria-labelledby="work-title">
         <div className="container-page">
           <Reveal>
             <SectionHeading id="work-title" label="Selected work" title="Six case studies, each traced to its source files." intro="Research, a product, applied R&D and industry projects. Each one follows the same arc: the engineering challenge, the input data, the workflow, the result and why it matters." />
@@ -115,7 +195,7 @@ export default function Home() {
       </section>
 
       {/* ---------- CAPABILITIES + FIELD CHART ---------- */}
-      <section className="border-t border-line bg-surface/70 py-20 sm:py-24" aria-labelledby="bring">
+      <section className="signal-top ai-bg-2 py-20 sm:py-24" aria-labelledby="bring">
         <div className="container-page mb-16">
           <Reveal>
             <div className="grid gap-6 rounded-2xl bg-[#0A1220] p-6 text-white sm:p-8 lg:grid-cols-[1.1fr_2fr] lg:items-center">
@@ -137,12 +217,12 @@ export default function Home() {
         </div>
         <div className="container-page">
           <Reveal>
-            <SectionHeading id="bring" label="What I bring" title="Structural judgement, BIM fluency and ML depth in one person." intro="Most AI for construction is built by engineers without ML depth, or by ML teams without site knowledge. My work sits in the overlap." />
+            <SectionHeading id="bring" label="What I bring" title="AI depth, BIM fluency and structural judgement in one person." intro="Most AI for construction is built by engineers without ML depth, or by ML teams without site knowledge. My work sits in the overlap: from data and models to cloud, BIM and digital twins." />
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {pillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 70} className="h-full">
-                <div className="card flex h-full flex-col p-6">
+                <div className="card card-hover flex h-full flex-col p-6">
                   <h3 className="text-[17px]">{p.title}</h3>
                   <p className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">{p.body}</p>
                   <div className="mt-auto flex flex-wrap gap-1.5 pt-5">
@@ -169,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* ---------- PROGRAMME ---------- */}
-      <section className="border-t border-line bg-paper py-20 sm:py-24" aria-labelledby="programme">
+      <section className="signal-top ai-bg py-20 sm:py-24" aria-labelledby="programme">
         <div className="container-page">
           <Reveal>
             <SectionHeading id="programme" label="Programme" title="Career, laid out like a construction programme." intro="Education, engineering practice and AI work, running in parallel. Select a bar for details." />
@@ -180,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* ---------- RESEARCH ---------- */}
-      <section className="border-t border-line bg-surface/70 py-20 sm:py-24" aria-labelledby="research">
+      <section className="signal-top ai-bg-2 py-20 sm:py-24" aria-labelledby="research">
         <div className="container-page">
           <Reveal>
             <SectionHeading id="research" label="Research & education" title="A Distinction MSc, with research grounded in industry." />

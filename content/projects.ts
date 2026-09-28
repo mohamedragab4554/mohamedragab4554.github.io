@@ -213,14 +213,14 @@ export const projects: Project[] = [
   /* ------------------------------------------------------------------ */
   {
     slug: "structural-drawing-understanding",
-    title: "Structural drawing understanding",
-    shortTitle: "Drawing understanding",
-    category: "Document AI · Instance segmentation",
+    title: "CAD-to-BIM AI: structural drawing understanding",
+    shortTitle: "CAD-to-BIM AI",
+    category: "Document AI · CAD-to-BIM · Instance segmentation",
     context: "AGECS (R&D, remote)",
     period: "Apr 2026 – present",
     role: "R&D engineer: dataset engineering, training, error analysis, post-processing",
     summary:
-      "Detecting and segmenting columns, beams, walls, openings and piles on structural plans, so that drawings become structured element data for 2D-to-BIM workflows.",
+      "Detecting and segmenting columns, beams, walls, openings and piles on structural plans, so that 2D drawings become structured element data for CAD-to-BIM modelling.",
     hero: {
       src: "/images/drawings/pred-batch-1.webp",
       alt: "Grid of floor-plan tiles with predicted structural element masks in yellow, blue and cyan",

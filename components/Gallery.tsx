@@ -40,7 +40,7 @@ export default function Gallery({ items }: { items: Figure[] }) {
             <button
               type="button"
               onClick={() => show(i)}
-              className="block w-full overflow-hidden rounded-lg border border-line bg-[#eef0ec] text-left"
+              className="block w-full overflow-hidden rounded-lg border border-line bg-[#0B1424] text-left"
               aria-label={`Enlarge image: ${f.caption}`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -80,7 +80,7 @@ export default function Gallery({ items }: { items: Figure[] }) {
                 <button type="button" onClick={close} className="rounded px-2.5 py-1.5 hover:bg-white/10" aria-label="Close image viewer" autoFocus>✕</button>
               </div>
             </div>
-            <div className="overflow-auto bg-white p-2">
+            <div className="overflow-auto bg-[#0B1424] p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={cur.src} alt={cur.alt} className="mx-auto h-auto max-h-[80vh] w-auto max-w-full" />
             </div>

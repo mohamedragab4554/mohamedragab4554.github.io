@@ -42,7 +42,7 @@ export default function Showcase() {
               tabIndex={on ? 0 : -1}
               type="button"
               onClick={() => select(i)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-[13.5px] font-medium transition ${on ? "border-transparent text-white" : "border-line bg-paper text-ink-soft hover:border-ink/30 hover:text-ink"}`}
+              className={`shrink-0 rounded-full border px-4 py-2 text-[13.5px] font-medium transition ${on ? "border-transparent text-[#06121F] shadow-glow" : "border-line bg-surface/60 text-ink-soft hover:border-accent/40 hover:text-ink"}`}
               style={on ? { background: accents[l.accent].onLight } : undefined}
             >
               <span className="mr-2 font-mono text-[10.5px] opacity-70">{String(i + 1).padStart(2, "0")}</span>
@@ -60,7 +60,7 @@ export default function Showcase() {
       >
         {lane.diagram ? (
           <div className="min-w-0 rounded-xl border border-line bg-surface/60 p-4 sm:p-5 lg:col-span-2">
-            <ArchitectureDiagram />
+            <ArchitectureDiagram dark />
           </div>
         ) : null}
         <div className="min-w-0">
@@ -78,7 +78,7 @@ export default function Showcase() {
             </>
           ) : (
             <>
-              <a href={main.src} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden rounded-xl border border-line bg-[#eef0ec]" aria-label={`Open full-size image: ${main.caption}`}>
+              <a href={main.src} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden rounded-xl border border-line bg-[#0B1424]" aria-label={`Open full-size image: ${main.caption}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   key={main.src}

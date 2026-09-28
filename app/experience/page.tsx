@@ -14,7 +14,7 @@ export default function ExperiencePage() {
         <SectionHeading as="h1"
           label="Experience"
           title="Engineering practice first, then AI and digital delivery."
-          intro="A year of structural and façade delivery, an industry project with AECOM, and applied R&D in inspection AI, drawing understanding and Scan-to-BIM."
+          intro="A year of structural and façade delivery, an industry project with AECOM, and applied R&D in inspection AI, CAD-to-BIM drawing AI and Scan-to-BIM."
         />
         <ol className="relative space-y-6 border-l border-line pl-6 sm:pl-10">
           {experience.map((r) => (
@@ -61,15 +61,18 @@ export default function ExperiencePage() {
             intro="No percentage bars. Each group names the work that evidences it."
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {skillGroups.map((g) => (
-              <div key={g.title} className="card flex flex-col p-6">
+            {skillGroups.map((g, gi) => {
+              const wide = gi === skillGroups.length - 1 && skillGroups.length % 3 === 1;
+              return (
+              <div key={g.title} className={`card card-hover flex flex-col p-6 ${wide ? "sm:col-span-2 lg:col-span-3" : ""}`}>
                 <h3 className="text-[17px] font-semibold tracking-tight">{g.title}</h3>
-                <ul className="mt-3 space-y-1.5 text-[14.5px] text-ink-soft">
+                <ul className={`mt-3 text-[14.5px] text-ink-soft ${wide ? "flex flex-wrap gap-x-6 gap-y-1.5" : "space-y-1.5"}`}>
                   {g.items.map((i) => <li key={i}>{i}</li>)}
                 </ul>
                 <p className="mt-auto pt-5 font-mono text-[11px] text-ink-muted">Evidence: {g.evidence}</p>
               </div>
-            ))}
+              );
+            })}
           </div>
           <p className="mt-8 text-sm text-ink-muted">Languages: Arabic (native), English (fluent).</p>
         </div>

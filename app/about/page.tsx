@@ -32,7 +32,7 @@ export default function AboutPage() {
             </p>
             <p>
               I am co-founder and CTO of AECAI, an AI-assisted structural inspection platform, and I carry out R&D at
-              {profile.showEmployerNames ? " AGECS" : " a construction-technology firm"} on structural drawing understanding and Scan-to-BIM. The common thread
+              {profile.showEmployerNames ? " AGECS" : " a construction-technology firm"} on CAD-to-BIM drawing AI and Scan-to-BIM. The common thread
               is turning photos, drawings and scans into engineering data that people can trust and act on.
             </p>
           </div>

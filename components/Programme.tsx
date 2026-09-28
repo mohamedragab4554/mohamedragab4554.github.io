@@ -43,12 +43,12 @@ export default function Programme() {
                     onMouseEnter={() => setSel(i)}
                     onFocus={() => setSel(i)}
                     aria-pressed={sel === i}
-                    className={`group absolute h-7 min-w-[10px] rounded-[5px] border text-left transition ${sel === i ? "border-ink bg-ink text-white" : "border-accent/25 bg-accent-tint text-ink hover:border-accent/60"}`}
+                    className={`group absolute h-7 min-w-[10px] rounded-[5px] border text-left transition ${sel === i ? "border-accent bg-accent text-[#06121F] shadow-glow" : "border-accent/30 bg-accent-tint text-ink hover:border-accent/70"}`}
                     style={{ left: `${pct(b.from)}%`, width: `${Math.max(pct(b.to) - pct(b.from), 1.2)}%`, top: 11 + (b.row ?? 0) * 36 }}
                     title={b.label}
                   >
                     <span className={`pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-[12px] font-medium ${
-                      (b.side ?? "in") === "in" ? `left-2 ${sel === i ? "text-white" : ""}` : b.side === "left" ? "right-[calc(100%+8px)] text-ink-soft" : "left-[calc(100%+8px)] text-ink-soft"
+                      (b.side ?? "in") === "in" ? `left-2 ${sel === i ? "text-[#06121F]" : ""}` : b.side === "left" ? "right-[calc(100%+8px)] text-ink-soft" : "left-[calc(100%+8px)] text-ink-soft"
                     } ${sel === i && b.side !== "in" ? "font-semibold text-ink" : ""}`}>
                       {b.side === "in" && b.short && pct(b.to) - pct(b.from) < 14 ? b.short : b.label}
                     </span>

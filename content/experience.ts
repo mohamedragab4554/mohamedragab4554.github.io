@@ -110,18 +110,28 @@ export const experience: Role[] = [
 export const skillGroups: { title: string; items: string[]; evidence: string }[] = [
   {
     title: "AI & Computer Vision",
-    items: ["Instance & semantic segmentation", "Object detection (YOLOv8 / YOLO11)", "U-Net · FPN · DeepLabV3+", "Tiled inference & TTA", "Error analysis & field validation", "Point-cloud segmentation (PointNet++)"],
+    items: ["Instance & semantic segmentation", "Object detection (YOLOv8 / YOLO11)", "U-Net · FPN · DeepLabV3+", "Point-cloud segmentation (PointNet++)", "Tiled inference & TTA", "Error analysis & field validation"],
     evidence: "Dissertation · AGECS · AECAI",
   },
   {
-    title: "Machine Learning & Data",
-    items: ["PyTorch · segmentation-models-pytorch", "TensorFlow / Keras", "Dataset engineering (COCO / YOLO / SVG)", "Annotation QA (CVAT)", "pandas · scikit-learn · R", "Metric design (IoU, mAP, F1, specificity)"],
+    title: "Machine Learning & Data Processing",
+    items: ["PyTorch · segmentation-models-pytorch", "TensorFlow / Keras", "Dataset engineering (COCO / YOLO / SVG, hash-verified)", "Point-cloud processing (Open3D, ~264 M points)", "Annotation QA (CVAT)", "pandas · NumPy · scikit-learn · R", "Metric design (IoU, mAP, F1, specificity)"],
     evidence: "MSc COM779 (81%), COM736 (75%) · AGECS",
   },
   {
-    title: "Digital Construction & BIM",
-    items: ["Revit · Navisworks · AutoCAD", "Federated models & clash detection", "IFC · IfcOpenShell", "ISO 19650 · BEP / EIR · CDE", "Scan-to-BIM · ReCap", "Power BI digital-twin dashboards"],
+    title: "Cloud & MLOps",
+    items: ["Serverless GPU inference (RunPod)", "Supabase (Postgres, storage, edge functions)", "Hugging Face model hosting", "Docker worker images", "Vercel · GitHub Actions CI/CD", "Git & GitHub"],
+    evidence: "AECAI production stack · this site",
+  },
+  {
+    title: "BIM, Digital Twins & BIM Level 3",
+    items: ["Revit · Navisworks · AutoCAD", "Federated models & clash detection", "ISO 19650 · BEP / EIR · CDE", "BIM Level 2 delivery; Level 3 principles (open IFC, cloud-connected data)", "IFC · IfcOpenShell · Scan-to-BIM", "Power BI digital-twin dashboards"],
     evidence: "MSc BEN714 (73%), BEN715 (80%) · AGECS",
+  },
+  {
+    title: "Generative AI & Agents",
+    items: ["Multimodal LLM / VLM evaluation on drawings", "LLM features in products (Claude, Gemini)", "AI coding agents: Claude Code, Codex, Kimi", "Evaluation design & failure-mode reports", "AI Fluency (Anthropic)"],
+    evidence: "AGECS LLM tests · AECAI console · certificate",
   },
   {
     title: "Structural Engineering",
@@ -132,10 +142,5 @@ export const skillGroups: { title: string; items: string[]; evidence: string }[]
     title: "Programming & Automation",
     items: ["Python", "TypeScript / Next.js", "Dynamo · pyRevit", "OpenCV · NumPy · SciPy", "SQL", "Jupyter · reproducible notebooks"],
     evidence: "AECAI console · BIM automation",
-  },
-  {
-    title: "Deployment & Engineering Workflow",
-    items: ["Serverless GPU inference (RunPod)", "Supabase (Postgres, edge functions)", "Hugging Face model hosting", "Vercel CI/CD", "Git & GitHub", "Technical documentation & handover"],
-    evidence: "AECAI production stack",
   },
 ];

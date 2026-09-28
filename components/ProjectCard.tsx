@@ -8,7 +8,7 @@ export default function ProjectCard({ p, index, featured = false }: { p: Project
       href={`/projects/${p.slug}/`}
       className={`group card flex flex-col overflow-hidden transition-all hover:-translate-y-0.5 hover:border-ink/25 ${featured ? "lg:col-span-2 lg:flex-row" : ""}`}
     >
-      <div className={`relative overflow-hidden border-b border-line bg-[#eef0ec] ${featured ? "lg:w-[58%] lg:border-b-0 lg:border-r" : ""}`}>
+      <div className={`relative overflow-hidden border-b border-line bg-[#0B1424] ${featured ? "lg:w-[58%] lg:border-b-0 lg:border-r" : ""}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={p.hero.src}

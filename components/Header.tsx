@@ -3,9 +3,10 @@ import { profile } from "@/content/profile";
 
 const nav = [
   { href: "/#work", label: "Work", mobile: true },
-  { href: "/#systems", label: "Systems", mobile: false },
+  { href: "/#ai", label: "AI", mobile: true },
+  { href: "/#twin", label: "Digital twins", mobile: false },
   { href: "/experience/", label: "Experience", mobile: true },
-  { href: "/research/", label: "Research", mobile: true },
+  { href: "/research/", label: "Research", mobile: false },
   { href: "/about/", label: "About", mobile: false },
   { href: "/#contact", label: "Contact", mobile: true },
 ];
