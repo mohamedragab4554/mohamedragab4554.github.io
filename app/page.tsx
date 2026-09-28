@@ -48,11 +48,8 @@ export default function Home() {
             </dl>
           </div>
 
-          <div className="relative -mx-4 h-[340px] sm:mx-0 sm:h-[440px] lg:-mr-16 lg:h-[580px]">
+          <div className="relative -mx-4 h-[470px] sm:mx-0 sm:h-[500px] lg:-mr-16 lg:h-[590px]">
             <HeroVisual />
-            <p className="absolute right-3 top-2 max-w-[15rem] text-right font-mono text-[10px] leading-snug text-white/40 sm:right-5">
-              Illustrative sequence of my Scan-to-BIM workflow. Real model outputs are shown below and in the case studies.
-            </p>
           </div>
         </div>
 

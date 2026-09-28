@@ -1,78 +1,92 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import HeroFallback from "./HeroFallback";
+import { useEffect, useRef, useState } from "react";
 
-const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
-
-const STAGES = [
-  { k: "01", t: "Scan", d: "raw points" },
-  { k: "02", t: "Segment", d: "classes, noise removed" },
-  { k: "03", t: "Detect", d: "elements" },
-  { k: "04", t: "Model", d: "IFC geometry" },
-];
-
-function capability(): { webgl: boolean; lite: boolean } {
+/**
+ * Hero visual: an illustrative Scan-to-BIM sequence driven by a trained-AI narrative.
+ * First paint is a still image of the same frame (server-rendered, no JS needed); the WebGL
+ * scene loads straight away and cross-fades in. Devices without WebGL, or low-power ones,
+ * keep a still of the finished model.
+ */
+function capability(): { webgl: boolean; small: boolean } {
   try {
     const c = document.createElement("canvas");
     const gl = c.getContext("webgl2") || c.getContext("webgl");
     const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
     const weak = (nav.hardwareConcurrency ?? 8) <= 2 || (nav.deviceMemory ?? 8) <= 2 || nav.connection?.saveData === true;
-    const lite = window.innerWidth < 768 || (nav.hardwareConcurrency ?? 8) <= 4;
-    return { webgl: !!gl && !weak, lite };
+    const small = window.innerWidth < 768 || (nav.hardwareConcurrency ?? 8) <= 4;
+    return { webgl: !!gl && !weak, small };
   } catch {
-    return { webgl: false, lite: true };
+    return { webgl: false, small: true };
   }
 }
 
 export default function HeroVisual() {
-  const [mode, setMode] = useState<"poster" | "3d">("poster");
-  const [lite, setLite] = useState(false);
-  const [reduced, setReduced] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [stage, setStage] = useState(3);
-  const [replay, setReplay] = useState(0);
+  const root = useRef<HTMLDivElement>(null);
+  const [mode, setMode] = useState<"poster" | "static">("poster");
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
+    const el = root.current;
+    if (!el) return;
     const cap = capability();
-    setLite(cap.lite);
-    if (!cap.webgl) return;
-    const start = () => { setStage(0); setMode("3d"); };
-    // load the 3D module after first paint so it never delays the content
-    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
-    const id = w.requestIdleCallback ? w.requestIdleCallback(start, { timeout: 900 }) : window.setTimeout(start, 250);
-    return () => { if (!w.requestIdleCallback) clearTimeout(id); };
+    if (!cap.webgl) { setMode("static"); return; }
+    let dispose: (() => void) | undefined;
+    let cancelled = false;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    Promise.all([import("./scan"), import("./HeroScene")])
+      .then(([scan, mod]) => {
+        if (cancelled) return;
+        const Sc = scan.buildScene(cap.small);
+        dispose = mod.startHero(el, Sc, { reduced, onReady: () => el.classList.add("ready") });
+      })
+      .catch(() => setMode("static"));
+    return () => { cancelled = true; dispose?.(); el.classList.remove("ready"); };
   }, []);
 
+  const still = mode === "static" ? "model" : "scan";
   return (
-    <div className="relative h-full w-full">
-      <HeroFallback className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`} />
-      {mode === "3d" ? (
-        <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>
-          <HeroCanvas onReady={() => setReady(true)} onStage={setStage} reduced={reduced} replayKey={replay} lite={lite} />
+    <div
+      ref={root}
+      className={`hv ${mode === "static" ? "hv-static" : ""}`}
+      role="img"
+      aria-label="Illustrative Scan-to-BIM sequence: a laser scan of a three-storey concrete frame is fed to a trained AI model, which classifies every point, detects each column, beam, slab and wall, and rejects temporary shoring. The recognised elements then become IFC objects."
+    >
+      <picture>
+        <source media="(max-width: 519px)" srcSet={`/images/hero/${still}-m.webp`} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="hv-still" src={`/images/hero/${still}-d.webp`} alt="" aria-hidden="true" fetchPriority="high" decoding="async" />
+      </picture>
+      <canvas data-h="gl" className="hv-gl" aria-hidden="true" />
+      <div data-h="labels" aria-hidden="true" />
+      <div data-h="hud" className="hv-hud" aria-live="polite">
+        <div className="hv-ttl"><span data-h="stage">01 Scan</span><i data-h="pts" /></div>
+        <div className="hv-msg" data-h="msg">Laser scan captured. Every point carries x, y, z and intensity.</div>
+        <div className="hv-ai">
+          <svg className="hv-nn" viewBox="0 0 44 30" aria-hidden="true">
+            <g>
+              {[4, 12, 18, 26].flatMap((y1) => [8, 22].map((y2) => <line key={`a${y1}-${y2}`} x1="4" y1={y1} x2="22" y2={y2} />))}
+              {[8, 22].flatMap((y1) => [5, 15, 25].map((y2) => <line key={`b${y1}-${y2}`} x1="22" y1={y1} x2="40" y2={y2} />))}
+            </g>
+            <g>
+              {[4, 12, 18, 26].map((y) => <circle key={`i${y}`} cx="4" cy={y} r="1.8" />)}
+              {[8, 22].map((y) => <circle key={`h${y}`} cx="22" cy={y} r="2.2" />)}
+              <circle cx="40" cy="5" r="1.8" className="o0" /><circle cx="40" cy="15" r="1.8" className="o1" /><circle cx="40" cy="25" r="1.8" className="o2" />
+            </g>
+          </svg>
+          <div>
+            <b>Trained AI model</b>
+            <span>Learned from labelled scans of each element type</span>
+            <span className="hv-io">Fed this scan: <em data-h="in">0</em> points</span>
+          </div>
         </div>
-      ) : null}
-
-      {/* stage readout */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-4 gap-y-1.5 bg-gradient-to-t from-[#0A1220] via-[#0A1220]/85 to-transparent px-3 pb-3 pt-8 font-mono text-[10.5px] uppercase tracking-[0.12em] sm:bg-none sm:px-5 sm:pb-5 sm:pt-0">
-        {STAGES.map((s, i) => (
-          <span key={s.t} className={`flex items-center gap-1.5 transition-colors duration-500 ${i <= stage ? "text-[#CDE9E7]" : "text-white/30"}`}>
-            <span className={`h-1.5 w-1.5 rounded-full transition-colors duration-500 ${i === stage ? "bg-[#F0A35E]" : i < stage ? "bg-[#5FD3CD]" : "bg-white/25"}`} />
-            {s.k} {s.t}
-          </span>
-        ))}
-        {mode === "3d" && !reduced ? (
-          <button
-            type="button"
-            onClick={() => { setStage(0); setReplay((r) => r + 1); }}
-            className="pointer-events-auto ml-auto rounded border border-white/20 px-2 py-0.5 text-white/70 hover:bg-white/10 hover:text-white"
-          >
-            Replay
-          </button>
-        ) : null}
+        <ul data-h="list" />
+      </div>
+      <p className="hv-note">Illustrative sequence on a synthetic frame. Real trained-model outputs are shown below and in the case studies.</p>
+      <div data-h="tip" className="hv-tip" aria-hidden="true" />
+      <div className="hv-bar">
+        <div data-h="chips" className="hv-chips" />
+        <span data-h="hint" className="hv-hint">Drag to rotate · hover an element to see what the AI recognised</span>
+        <button data-h="replay" className="hv-replay" type="button">Replay</button>
       </div>
     </div>
   );

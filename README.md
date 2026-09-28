@@ -8,8 +8,8 @@ This is an interactive portfolio for a structural engineer who works in computer
 
 | Feature | Where |
 |---|---|
-| WebGL hero: a point cloud resolves into a structural frame (scan → segment → detect → model). It plays once, then settles; the cursor adds parallax. | `components/hero/*` |
-| Static SVG fallback for the hero. It is server-rendered and shown for reduced motion, missing WebGL or low-power devices, and while the 3D module loads. | `components/hero/HeroFallback.tsx` |
+| WebGL hero: a simulated laser scan of a concrete frame is fed to a trained AI model, which classifies every point (AI classify), detects each element and rejects temporary shoring (AI detect), then IFC solids grow from the points (BIM model). Drag to rotate, hover an element for its IFC class and the scan points it was recognised from, click a stage to jump. | `components/hero/scan.ts` (scene), `HeroScene.ts` (WebGL), `HeroVisual.tsx` |
+| Instant first frame: a server-rendered still of the same view paints before any JavaScript, then the 3D cross-fades in. Low-power or no-WebGL devices keep a labelled still of the finished model; reduced motion opens on the finished model. Regenerate the stills in `public/images/hero/` if you change the scene or camera. | `public/images/hero/*.webp` |
 | Systems map: inputs → methods → outcomes, traceable per project | `components/SystemsMap.tsx` |
 | Inference viewer: the same real site photo through YOLO11x-seg, U-Net and FPN, with a drag comparison | `components/InferenceViewer.tsx` |
 | Before/after sliders using real inputs and outputs (drawings, point cloud, crack masks) | `components/CompareSlider.tsx` |
