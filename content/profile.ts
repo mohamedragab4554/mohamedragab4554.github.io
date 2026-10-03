@@ -20,11 +20,10 @@ export const profile = {
   linkedinLabel: "linkedin.com/in/mohamed-ragab-278208199",
   /** Phone numbers shown on the site and CV (confirmed by Mohamed, 28 Sep 2026). Empty the list to hide them. */
   phones: [
-    { label: "UK", display: "+44 7412 891254", tel: "+447412891254" },
     { label: "Egypt", display: "+20 10 9756 1115", tel: "+201097561115" },
   ] as { label: string; display: string; tel: string }[],
-  /** Location intentionally generic until confirmed (CVs list Belfast and Cairo). */
-  location: "United Kingdom · Egypt · open to remote",
+  /** Location confirmed by Mohamed, Oct 2026. */
+  location: "El Shorouk City, Cairo, Egypt",
   headshot: { src: "/images/profile/headshot.webp", width: 800, height: 839 },
   cvHref: "/Mohamed_Ragab_CV.pdf",
   membership: "Institution of Civil Engineers (ICE): Student Member",

@@ -136,7 +136,7 @@ export const projects: Project[] = [
     title: "AECAI: from inspection models to a working product",
     shortTitle: "AECAI inspection platform",
     category: "AI product · MLOps · Full-stack",
-    context: "AECAI Ltd (Belfast): co-founder & CTO",
+    context: "AECAI Ltd (Belfast): CTO",
     period: "Dec 2025 – present",
     role: "CTO: CV pipeline design, model evaluation, and the full web console (Next.js)",
     summary:
@@ -203,10 +203,10 @@ export const projects: Project[] = [
     ],
     honestNotes: [
       "Spalling over-detection on painted brickwork is only partly mitigated. The fix is new negative training data, which is planned.",
-      "Edge functions, migrations and infrastructure secrets are owned by my co-founder. My ownership is the console and the CV pipeline design.",
+      "Edge functions, migrations and infrastructure secrets are owned by another team member. My ownership is the console and the CV pipeline design.",
     ],
     sources: ["AECAI\\PROJECT_KNOWLEDGE.md", "AECAI\\Spalling\\01_last_version\\MD\\PROGRESS.MD", "AECAI\\04-campaign\\AECAI APP\\1–6.png"],
-    disclosure: "Commercial details, credentials and customer data are excluded. The screenshots come from the founders' own workspace, with addresses and coordinates blurred.",
+    disclosure: "Commercial details, credentials and customer data are excluded. The screenshots come from the company's own workspace, with addresses and coordinates blurred.",
   },
 
   /* ------------------------------------------------------------------ */

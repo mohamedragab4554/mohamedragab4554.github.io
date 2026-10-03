@@ -45,7 +45,7 @@ export default function Home() {
             </div>
             <dl className="mt-8 grid max-w-[35rem] gap-2 border-t border-white/10 pt-5 text-[13.5px] sm:grid-cols-[4.5rem_1fr]">
               <dt className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/45 sm:pt-[3px]">Now</dt>
-              <dd className="text-white/85">Co-founder &amp; CTO, AECAI <span className="text-white/35">·</span> R&amp;D AI-Construction Specialist, {profile.showEmployerNames ? "AGECS" : "construction-tech R&D"}</dd>
+              <dd className="text-white/85">CTO, AECAI <span className="text-white/35">·</span> R&amp;D AI-Construction Specialist, {profile.showEmployerNames ? "AGECS" : "construction-tech R&D"}</dd>
               <dt className="mt-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/45 sm:mt-0 sm:pt-[3px]">Before</dt>
               <dd className="text-white/85">Structural &amp; façade design engineer, National Consulting Engineers (US) <span className="text-white/35">·</span> AECOM × Ulster industry project</dd>
             </dl>

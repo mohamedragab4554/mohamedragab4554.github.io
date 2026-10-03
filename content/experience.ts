@@ -33,7 +33,7 @@ export const experience: Role[] = [
     source: "AECAI\\AGECS\\*\\MD\\PROGRESS.MD; CV (Fogsphere, Aug 2026)",
   },
   {
-    role: "Co-Founder & CTO",
+    role: "Chief Technology Officer (CTO)",
     org: "AECAI Ltd",
     orgGeneric: "AECAI Ltd",
     place: "Belfast, UK",

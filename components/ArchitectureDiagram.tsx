@@ -2,7 +2,7 @@
  * AECAI production architecture, drawn from AECAI\PROJECT_KNOWLEDGE.md §3–6.
  * Ownership is marked honestly: the console (incl. the parallel dispatch in
  * cv-detection.ts) and the spalling + rebar pipeline are mine; edge functions
- * and database migrations belong to my co-founder.
+ * and database migrations belong to another team member.
  */
 type Node = { title: string; host: string; detail: string; mine?: boolean };
 
@@ -54,7 +54,7 @@ export default function ArchitectureDiagram({ dark = false }: { dark?: boolean }
         ))}
       </ol>
       <figcaption id="arch-cap" className={`mt-4 text-[12.5px] leading-relaxed ${muted}`}>
-        AECAI production pipeline. Highlighted parts are mine: the console, the parallel dispatch and the spalling-and-rebar pipeline. My co-founder owns the edge functions and database migrations. Every push to main redeploys the app (Vercel) and rebuilds the worker images (RunPod).
+        AECAI production pipeline. Highlighted parts are mine: the console, the parallel dispatch and the spalling-and-rebar pipeline. Another team member owns the edge functions and database migrations. Every push to main redeploys the app (Vercel) and rebuilds the worker images (RunPod).
       </figcaption>
     </figure>
   );

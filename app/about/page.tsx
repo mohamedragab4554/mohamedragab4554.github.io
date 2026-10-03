@@ -31,7 +31,7 @@ export default function AboutPage() {
               YOLO, U-Net and FPN models for concrete defects and then tested them on real site imagery from an industry partner.
             </p>
             <p>
-              I am co-founder and CTO of AECAI, an AI-assisted structural inspection platform, and I carry out R&D at
+              I am CTO of AECAI, an AI-assisted structural inspection platform, and I carry out R&D at
               {profile.showEmployerNames ? " AGECS" : " a construction-technology firm"} on CAD-to-BIM drawing AI and Scan-to-BIM. The common thread
               is turning photos, drawings and scans into engineering data that people can trust and act on.
             </p>
